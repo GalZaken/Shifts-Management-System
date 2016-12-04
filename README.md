@@ -11,3 +11,6 @@ The goal of the project is to develop shifts management system - WEB application
 <br/>
 ## Project Documents:
 ### [Team Page](https://github.com/GalZaken/Shifts-Management-System/wiki/Team)
+### [Project Proposal](https://github.com/GalZaken/Shifts-Management-System/blob/master/Documents/Project%20proposal.docx?raw=true)
+
+
