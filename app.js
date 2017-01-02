@@ -3,12 +3,25 @@
 var express = require('express');
 var path    = require('path');
 
+var mongoose = require('mongoose');
+
 var logger       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+
+var databaseConfiguration = require('./config/databaseConfiguration.js');
+mongoose.connect(databaseConfiguration.dbURL, function(error) {
+    console.log("\nTrying to connect to " + databaseConfiguration.dbName + "...");
+    if(error){
+        console.log("Error: Connection failed!\n");
+    } else {
+        console.log("CONNECTION SUCCEEDED!");
+        console.log("App is now connected to " + databaseConfiguration.dbName + "\n");
+    }
+});
 
 // -------------------------------------------------------------------------------------
 

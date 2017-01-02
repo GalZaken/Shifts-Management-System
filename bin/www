@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('shiftmanager:server');
+var debug = require('debug')('shiftmanagersystem:server');
 var http = require('http');
 
 /**
