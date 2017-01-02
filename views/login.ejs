@@ -1,29 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-</head>
-<body>
-<div class="container">
-    <div class="col-sm-6 col-sm-offset-3">
-        <h1><span class="fa fa-sign-in"></span> Login</h1>
+    <head>
+        <meta charset="utf-8">
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/login.css' />
+    </head>
+    <body dir='rtl'>
         <!-- LOGIN FORM -->
-        <form action="/users/login" method="post">
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" class="form-control" name="username">
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password">
-            </div>
+        <div id="login">
+            <form action="/users/login" method="post">
+                <input type="text" name="username" placeholder="שם משתמש"><br>
+                <input type="password" name="password" placeholder="סיסמא"><br>
+                <input type="submit" value="התחבר"><br>
+             </form>
+        </div>
 
-            <button type="submit" class="btn btn-warning btn-lg">Login</button>
-        </form>
-    </div>
-</div>
-</body>
+        <footer>
+            <!-- COPYRIGHTS: -->
+            <div id="copyrights">Copyright &copy; All rights reserved 2016</div>
+        </footer>
+    </body>
 </html>

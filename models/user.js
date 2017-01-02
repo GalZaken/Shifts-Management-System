@@ -19,18 +19,6 @@ module.exports.createUser = function(newUser, callback) {
     });
 }
 
-// module.exports.createAdminUser = function() {
-//     var newUser = new User({
-//         username: 'admin',
-//         password: '123'
-//     });
-//
-//     User.createUser(newUser, function(err, user){
-//         if(err) throw err;
-//         console.log(user);
-//     });
-// }
-
 module.exports.getUserByUsername = function(username, callback) {
     var query = {username: username};
     User.findOne(query, callback);
@@ -47,14 +35,14 @@ module.exports.comparePassword = function(candidatePassword, hash, callback) {
     });
 }
 
-// module.exports.createAdminUser = function() {
-//     var newUser = new User({
-//         username: 'admin',
-//         password: '123'
-//     });
+//     module.exports.createAdminUser = function() {
+//         var newUser = new User({
+//             username: 'admin',
+//             password: '123'
+//         });
 //
-//     User.createUser(newUser, function(err, user){
-//         if(err) throw err;
-//         console.log(user);
-//     });
+//         User.createUser(newUser, function(err, user){
+//             if(err) throw err;
+//             console.log(user);
+//         });
 // }
