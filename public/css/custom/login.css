@@ -12,6 +12,7 @@ input {
     font-size: 16px;
     line-height: 1.5em;
     padding: 0;
+    width: 350px;
     -webkit-appearance: none;
 }
 
@@ -22,13 +23,11 @@ input {
     color: #aaaaaa;
     margin-bottom: 1em;
     padding: 0 16px;
-    width: 350px;
     height: 50px;
 }
 
 #login form input[type="submit"] {
     background: #01acac;
-    width: 380px;
     height: 50px;
     margin-bottom: 2em;
     border-radius: 50px;
@@ -41,4 +40,39 @@ input {
     background: #018a8a;
 }
 
+/* --- Media Queries: --- */
 
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+    input {
+        width: 350px;
+    }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+    input {
+        width: 350px;
+    }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+    input {
+        width: 350px;
+    }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+    input {
+        width: 290px;
+    }
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+    input {
+        width: 250px;
+    }
+}
