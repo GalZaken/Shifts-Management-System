@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="ShiftsManagerApp">
 <head>
   <title>Dashboard</title>
   <!-- CUSTOM CSS: -->
@@ -27,15 +27,15 @@
         <!-- Menu -->
         <div class="collapse navbar-collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav navbar-right hidden-xs">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;רשימת עובדים</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;סידור עבודה</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;בית</a></li>
+            <li><a href="/employees"><span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;רשימת עובדים</a></li>
+            <li><a href="/schedule"><span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;סידור עבודה</a></li>
+            <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;בית</a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right visible-xs">
-            <li><a href="#">ראשי</a></li>
-            <li><a href="#">עובדים</a></li>
-            <li><a href="#">סידור עבודה</a></li>
+            <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;בית</a></li>
+            <li><a href="/schedule"><span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;סידור עבודה</a></li>
+            <li><a href="/employees"><span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;רשימת עובדים</a></li>
           </ul>
 
           <!-- My Account -->
@@ -56,7 +56,7 @@
 </header><!-- End of header -->
 
 <main>
-  <div>
+  <div class="navbar-overlap" ng-view>
     <!-- NG-VIEW-->
   </div>
 </main><!-- End of main -->
@@ -71,6 +71,19 @@
 
 <!-- Bootstrap: -->
 <script src="js/bootstrap/bootstrap.min.js"></script>
+
+<!-- Angular: -->
+<script src="js/angular/angular.min.js"></script>
+<script src="js/angular/angular-route.min.js"></script>
+<script src="js/angular/angular-messages.min.js"></script>
+
+<!-- Dashboard: -->
+<script src="js/app.js"></script>
+
+<!-- Controllers: -->
+<script src="js/controllers/homeCtrl.js"></script>
+<script src="js/controllers/scheduleCtrl.js"></script>
+<script src="js/controllers/employeesCtrl.js"></script>
 
 <!-- ************************* END OF SCRIPTS ************************* -->
 </body>

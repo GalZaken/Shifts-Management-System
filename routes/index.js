@@ -1,8 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', ensureAuthenticated, function(req, res, next) {
+/* GET /partials/name */
+router.get('/partials/:name', function(req, res) {
+    var name = req.params.name;
+    res.render('partials/' + name);
+});
+
+/* GET / -> Land Page */
+router.get('/', ensureAuthenticated, function(req, res) {
     res.render('index', { username: req.user.username });
 });
 
