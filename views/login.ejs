@@ -4,16 +4,21 @@
         <meta charset="utf-8">
         <title><%= title %></title>
         <link rel='stylesheet' href='/css/custom/login.css' />
-        <link rel='stylesheet' href='/css/bootstrap/bootstrap.min.css' />
+        <!-- BOOTSTRAP CSS: -->
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' />
     </head>
     <body dir='rtl'>
+        <div id="logo">
+            <img src="/images/logo.jpg" />
+        </div>
+    
         <!-- LOGIN FORM -->
         <div id="login">
             <form action="/users/login" method="post">
                 <input type="text" name="username" placeholder="שם משתמש"><br>
                 <input type="password" name="password" placeholder="סיסמא"><br>
                 <input type="submit" value="התחבר"><br>
-             </form>
+            </form>
         </div>
 
         <footer>

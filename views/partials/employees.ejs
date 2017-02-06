@@ -1,3 +1,62 @@
-<div>
-    <h1>EMPLOYEES</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-11"></div>
+        <div class="col-lg-1">
+            <form action="/register" method="post">
+                <input type="submit" value="הוספת עובד">
+            </form>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <table class="table table-list-search table table-hover pull-right" dir="rtl">
+            <thead>
+            <tr class="table-title">
+                <td>שם מלא</td>
+                <td>תפקיד</td>
+                <td>סטטוס</td>
+                <td>טלפון</td>
+                <td>אי-מייל</td>
+                <td>אפשרויות</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>גל זקן</td>
+                <td>מנהל</td>
+                <td><small class="label label-success">פעיל</small></td>
+                <td>054-555555</td>
+                <td>gal@gmail.com</td>
+                <td class="icon-color">
+                    <small class="glyphicon glyphicon-edit"></small>
+                    <small class="glyphicon glyphicon-remove-circle"></small>
+                </td>
+            </tr>
+            <tr>
+                <td>אופיר נגדי</td>
+                <td>אחמ"ש</td>
+                <td><small class="label label-danger">לא פעיל</small></td>
+                <td>054-555555</td>
+                <td>ofir@gmail.com</td>
+                <td class="icon-color">
+                    <small class="glyphicon glyphicon-edit"></small>
+                    <small class="glyphicon glyphicon-remove-circle"></small>
+                </td>
+            </tr>
+            <tr>
+                <td>דני וולפוב</td>
+                <td>מאבטח</td>
+                <td><small class="label label-danger">לא פעיל</small></td>
+                <td>054-555555</td>
+                <td>danny@gmail.com</td>
+                <td class="icon-color">
+                    <small class="glyphicon glyphicon-edit"></small>
+                    <small class="glyphicon glyphicon-remove-circle"></small>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

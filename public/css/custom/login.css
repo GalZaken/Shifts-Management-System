@@ -2,7 +2,7 @@ body {
     background: #eeeeee;
     color: #333333;
     margin: auto;
-    padding-top: 15%;
+    padding-top: 2%;
     text-align: center;
 }
 
@@ -14,6 +14,10 @@ input {
     padding: 0;
     width: 350px;
     -webkit-appearance: none;
+}
+
+#logo img {
+    width: 600px;
 }
 
 #login form input[type="text"], #login form input[type="password"] {
@@ -31,9 +35,9 @@ input {
     height: 50px;
     margin-bottom: 2em;
     border-radius: 50px;
+    border: 1px white;
     color: white;
     cursor: pointer;
-    transition: background 0.3s ease-in-out;
 }
 
 #login form input[type="submit"]:hover {
@@ -44,6 +48,10 @@ input {
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
+    #logo img {
+        width: 600px;
+    }
+
     input {
         width: 350px;
     }
@@ -51,6 +59,10 @@ input {
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
+    #logo img {
+        width: 500px;
+    }
+
     input {
         width: 350px;
     }
@@ -58,6 +70,10 @@ input {
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
+    #logo img {
+        width: 450px;
+    }
+
     input {
         width: 350px;
     }
@@ -65,6 +81,10 @@ input {
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
+    #logo img {
+        width: 320px;
+    }
+
     input {
         width: 290px;
     }
@@ -72,6 +92,10 @@ input {
 
 /* Custom, iPhone Retina */
 @media only screen and (max-width : 320px) {
+    #logo img {
+        width: 280px;
+    }
+
     input {
         width: 250px;
     }

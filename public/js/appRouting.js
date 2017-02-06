@@ -3,16 +3,24 @@ angular.module('ShiftsManagerApp', ['ngRoute'])
     .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                // controller: 'homeCtrl',
+                controller: 'homeCtrl',
                 templateUrl: 'partials/home.ejs'
             })
             .when('/schedule', {
-                // controller: 'scheduleCtrl',
+                controller: 'scheduleCtrl',
                 templateUrl: 'partials/schedule.ejs'
             })
             .when('/employees', {
-                // controller: 'employeesCtrl',
+                controller: 'employeesCtrl',
                 templateUrl: 'partials/employees.ejs'
+            })
+            .when('/profile', {
+                controller: 'profileCtrl',
+                templateUrl: 'partials/profile.ejs'
+            })
+            .when('/settings', {
+                controller: 'settingsCtrl',
+                templateUrl: 'partials/settings.ejs'
             })
             .otherwise({redirectTo: '/'});
 
