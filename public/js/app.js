@@ -1,6 +1,6 @@
-angular.module('ShiftsManagerApp', ['ngRoute', 'ngMessages'])
+angular.module('ShiftsManagerApp', ['ngRoute'])
 /* ROUTE Configuration */
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
                 // controller: 'homeCtrl',
@@ -15,4 +15,6 @@ angular.module('ShiftsManagerApp', ['ngRoute', 'ngMessages'])
                 templateUrl: 'partials/employees.ejs'
             })
             .otherwise({redirectTo: '/'});
+
+        $locationProvider.html5Mode(true);
     });

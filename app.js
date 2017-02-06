@@ -12,7 +12,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
-var index = require('./routes/index');
+var routes = require('./routes/routes');
 var users = require('./routes/users');
 
 var databaseConfiguration = require('./config/databaseConfiguration.js');
@@ -59,7 +59,8 @@ app.use(passport.session());
 app.use(flash());
 
 // ROUTES:
-app.use('/', index);
+app.get('/partials/:name', routes.partials);
+app.get('/', routes.ensureAuthenticated, routes.index);
 app.use('/users', users);
 
 // -------------------------------------------------------------------------------------
