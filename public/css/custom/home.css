@@ -19,3 +19,15 @@
 .glyphicon.glyphicon-pencil {
     font-size: 150%;
 }
+
+#adminComment{
+    resize: none;
+}
+
+.schedule-table{
+
+    width: 80%;
+}
+.table-title th , .table-schedule-area td{
+    text-align: center;
+}
