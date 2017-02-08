@@ -1,0 +1,21 @@
+#wellcome ,.splliter, #manager-msg {
+
+    margin-top: 5%;
+    /*  height: 200px;*/
+}
+
+#wellcome{
+    /*  background-color: red;*/
+}
+#manager-msg{
+    float:right;
+    /*  background-color: aqua;*/
+}
+
+.splliter{
+    /*  background-color: gray;*/
+}
+
+.glyphicon.glyphicon-pencil {
+    font-size: 150%;
+}

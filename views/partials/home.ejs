@@ -1,3 +1,97 @@
-<div>
-    <h1>HOME</h1>
+<div class="container" dir="rtl">
+
+    <!-- FIRST RAW DIV FOR WELLCOME AND MANAGER MASSAGES -->
+    <div class="row">
+        <!-- WELCOME -->
+        <div class="col-lg-4" id="wellcome">
+            <div class="panel panel-default">
+                <!--
+                            <div class="panel-heading">
+                              <h3 class="panel-title">WELLCOME ZONE</h3>
+                            </div>
+                -->
+                <div class="panel-body">
+                    ברוך הבא Admin
+                </div>
+            </div>
+
+        </div>
+        <!--END OF WELCOME -->
+
+        <!--MASSAGE -->
+        <div class="col-lg-8" id="manager-msg">
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+
+                    <div class="pull-left" ><!-- shold be disabled if not admin -->
+                        <!--                <a href="main-page.html" class="glyphicon glyphicon-pencil" ></a>-->
+                        <a  class="glyphicon glyphicon-pencil"  data-toggle="modal" data-target="#myModal"></a>
+                    </div>
+                    <h3 class="panel-title">הודעות מנהל</h3>
+
+                </div>
+                <div class="panel-body">
+                    text editor will be here for the manager -
+                    and only view for the rest
+                </div>
+            </div>
+            <!--END OF MASSAGE -->
+
+        </div>
+
+    </div>
+    <!-- END OF FIRST RAW -->
+
+    <!-- SECONED ROW FOR CURRENT SHIFTS -->
+    <div class="row splliter">
+
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">סידור לשבוע נוכחי</h3>
+            </div>
+            <div class="panel-body">
+                Panel content
+            </div>
+        </div>
+
+    </div>
+    <!-- END OF SECONED ROW -->
+
+    <!-- THIRD ROW FOR NEXT WEEK SHIFTS -->
+    <div class="row splliter">
+
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h3 class="panel-title">סידור לשבוע הבא</h3>
+            </div>
+            <div class="panel-body">
+                Panel content
+            </div>
+        </div>
+
+    </div>
+    <!-- END OF THIRD ROW -->
+
+
+    <!-- Modal for popup massage (admin only) -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">ערוך הודעה</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">שמור</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">בטל</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
