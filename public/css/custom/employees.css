@@ -1,47 +1,23 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
-
-.profile
-{
-    min-height: 100px;
-    min-width: 1000px;
-    display: inline-block;
-}
-span.tags
-{
-    background: #000000;
-    border-radius: 2px;
-    color: #000000;
-    font-weight: bold;
-    padding: 2px 4px;
-}
-.stats
-{
-    border: 2px;
-}
-.row{
-    margin-left:0px;
-    margin-right:0px;
-}
-.spacer{
-    min-height: 70px;
+.table th {
+    text-align: right;
 }
 
-.table-title {
-    /*color: #01acac;*/
+.modal-title {
+    color: #01a8a8;
     font-weight: bold;
+}
+
+.required-label {
+    color: indianred;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .icon-color {
     color: #01acac;
+    cursor: pointer;
 }
 
-form input[type="submit"] {
-    background: #01acac;
-    width: 120px;
-    height: 50px;
-    margin-bottom: 2em;
-    border-radius: 50px;
-    color: white;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
+.icon-color small:hover {
+    color: #555555;
 }

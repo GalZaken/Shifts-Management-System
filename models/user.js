@@ -2,8 +2,17 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
 var UserSchema = new mongoose.Schema({
+
     username: String,
-    password: String
+    password: String,
+    firstname: String,
+    lastname: String,
+    idNumber: String,
+    email: String,
+    phoneNumber: String,
+    role: String,
+    status: String,
+    priority: String
 });
 
 var User = module.exports = mongoose.model('users', UserSchema);
@@ -19,6 +28,11 @@ module.exports.createUser = function(newUser, callback) {
     });
 }
 
+module.exports.getUsersList = function(callback) {
+    var query = {};
+    User.find(query, callback);
+}
+
 module.exports.getUserByUsername = function(username, callback) {
     var query = {username: username};
     User.findOne(query, callback);
@@ -26,6 +40,14 @@ module.exports.getUserByUsername = function(username, callback) {
 
 module.exports.getUserById = function(id, callback) {
     User.findById(id, callback);
+}
+
+module.exports.removeUserById = function(id, callback) {
+    User.findByIdAndRemove(id, callback);
+}
+
+module.exports.updateUserById = function(id, updatedUser, callback) {
+    User.findByIdAndUpdate(id, updatedUser, callback);
 }
 
 module.exports.comparePassword = function(candidatePassword, hash, callback) {

@@ -62,6 +62,7 @@ app.use(flash());
 app.get('/partials/:name', routes.partials);
 app.get('/', routes.ensureAuthenticated, routes.index);
 app.use('/users', users);
+app.get('*', routes.index);
 
 // -------------------------------------------------------------------------------------
 

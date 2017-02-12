@@ -1,62 +1,245 @@
-<div class="container">
-    <div class="row">
-        <div class="col-lg-11"></div>
-        <div class="col-lg-1">
-            <form action="/register" method="post">
-                <input type="submit" value="הוספת עובד">
-            </form>
-        </div>
-    </div>
-
+<div class="container" dir="rtl">
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#employeeModal" ng-click="setModalTitle(1)">הוספת עובד</button>
     <br>
+    <br>
+    <br>
+    <!-- New Employee Modal -->
+    <div id="employeeModal" class="modal fade" role="dialog">
+        <!-- Modal Dialog -->
+        <div class="modal-dialog">
+            <!-- Modal Content -->
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div class="col-md-6">
+                        <button type="button" class="close pull-left" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="modal-title">
+                            {{ modalTitle }}
+                        </h3>
+                    </div>
+                </div>
+                <!-- End of Modal Header -->
 
-    <div class="row">
-        <table class="table table-list-search table table-hover pull-right" dir="rtl">
-            <thead>
-            <tr class="table-title">
-                <td>שם מלא</td>
-                <td>תפקיד</td>
-                <td>סטטוס</td>
-                <td>טלפון</td>
-                <td>אי-מייל</td>
-                <td>אפשרויות</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>גל זקן</td>
-                <td>מנהל</td>
-                <td><small class="label label-success">פעיל</small></td>
-                <td>054-555555</td>
-                <td>gal@gmail.com</td>
-                <td class="icon-color">
-                    <small class="glyphicon glyphicon-edit"></small>
-                    <small class="glyphicon glyphicon-remove-circle"></small>
-                </td>
-            </tr>
-            <tr>
-                <td>אופיר נגדי</td>
-                <td>אחמ"ש</td>
-                <td><small class="label label-danger">לא פעיל</small></td>
-                <td>054-555555</td>
-                <td>ofir@gmail.com</td>
-                <td class="icon-color">
-                    <small class="glyphicon glyphicon-edit"></small>
-                    <small class="glyphicon glyphicon-remove-circle"></small>
-                </td>
-            </tr>
-            <tr>
-                <td>דני וולפוב</td>
-                <td>מאבטח</td>
-                <td><small class="label label-danger">לא פעיל</small></td>
-                <td>054-555555</td>
-                <td>danny@gmail.com</td>
-                <td class="icon-color">
-                    <small class="glyphicon glyphicon-edit"></small>
-                    <small class="glyphicon glyphicon-remove-circle"></small>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <fieldset class="form-right">
+                            <!-- Personal Details: -->
+
+                            <!-- Username input-->
+                            <div class="form-group">
+                                <div class="col-md-2">&nbsp;</div>
+                                <div class="col-md-5">
+                                    <input id="textinput" name="textinput" type="text" placeholder="Username" class="form-control input-md" ng-model="username" autofocus required>
+                                </div>
+                                <label class="col-md-3 control-label" for="textinput">
+                                    <span class="required-label">*&nbsp;</span>שם משתמש</label>
+                                <div class="col-md-2">&nbsp;</div>
+                            </div>
+
+                            <!-- First Name input-->
+                            <div class="form-group">
+                                <div class="col-md-2">&nbsp;</div>
+                                <div class="col-md-5">
+                                    <input id="textinput" name="textinput" type="text" placeholder="John" class="form-control input-md" ng-model="firstname" required>
+                                </div>
+                                <label class="col-md-3 control-label" for="textinput">
+                                    <span class="required-label">*&nbsp;</span>שם פרטי</label>
+                                <div class="col-md-2">&nbsp;</div>
+                            </div>
+
+                            <!-- Last Name input-->
+                            <div class="form-group">
+                                <div class="col-md-2">&nbsp;</div>
+                                <div class="col-md-5">
+                                    <input id="textinput" name="textinput" type="text" placeholder="Smith" class="form-control input-md" ng-model="lastname" required>
+                                </div>
+                                <label class="col-md-3 control-label" for="textinput">
+                                    <span class="required-label">*&nbsp;</span>שם משפחה</label>
+                                <div class="col-md-2">&nbsp;</div>
+                            </div>
+
+                            <!-- ID Number input -->
+                            <div class="form-group">
+                                <div class="col-md-2">&nbsp;</div>
+                                <div class="col-md-5">
+                                    <input id="textinput" name="textinput" type="text" class="form-control input-md" ng-model="idNumber" required>
+                                </div>
+                                <label class="col-md-3 control-label" for="textinput">
+                                    <span class="required-label">*&nbsp;</span>ת.ז</label>
+                                <div class="col-md-2">&nbsp;</div>
+                            </div>
+
+                            <!-- Email input-->
+                            <div class="form-group">
+                                <div class="col-md-2">&nbsp;</div>
+                                <div class="col-md-5">
+                                    <input id="email" name="email" type="text" placeholder="john.smith@mail.com" class="form-control input-md" ng-model="email" required>
+                                </div>
+                                <label class="col-md-3 control-label" for="email">
+                                    <span class="required-label">*&nbsp;</span>E-mail</label>
+                                <div class="col-md-2">&nbsp;</div>
+                            </div>
+
+                            <!-- Phone Number input-->
+                            <div class="form-group">
+                                <div class="col-md-2">&nbsp;</div>
+                                <div class="col-md-5">
+                                    <input id="textinput" name="textinput" type="tel" placeholder="054-5555555" class="form-control input-md" ng-model="phoneNumber" required>
+                                </div>
+                                <label class="col-md-3 control-label" for="textinput">
+                                    <span class="required-label">*&nbsp;</span>טלפון נייד</label>
+                                <div class="col-md-2">&nbsp;</div>
+                            </div>
+
+                            <!-- Permissions:-->
+                            <br>
+                            <!-- Select Role -->
+                            <div class="form-group">
+                                <div class="col-md-2">&nbsp;</div>
+                                <div class="col-md-5">
+                                    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedRoleValue" required>
+                                        <option value="מנהל">מנהל</option>
+                                        <option value="אחמ''ש">אחמ"ש</option>
+                                        <option value="מאבטח">מאבטח</option>
+                                    </select>
+                                </div>
+                                <label class="col-md-3 control-label" for="selectbasic">
+                                    <span class="required-label">*&nbsp;</span>תפקיד</label>
+                                <div class="col-md-2">&nbsp;</div>
+                            </div>
+
+                            <!-- Select status -->
+                            <div class="form-group">
+                                <div class="col-md-2">&nbsp;</div>
+                                <div class="col-md-5">
+                                    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedStatusValue" required>
+                                        <option value="active">פעיל</option>
+                                        <option value="inactive">לא פעיל</option>
+                                        <option value="pending">חפיפה</option>
+                                    </select>
+                                </div>
+                                <label class="col-md-3 control-label" for="selectbasic">
+                                    <span class="required-label">*&nbsp;</span>סטטוס</label>
+                                <div class="col-md-2">&nbsp;</div>
+                            </div>
+
+                            <!-- Select Priority -->
+                            <div class="form-group">
+                                <div class="col-md-2">&nbsp;</div>
+                                <div class="col-md-5">
+                                    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedPriorityValue" required>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <label class="col-md-3 control-label" for="selectbasic">
+                                    <span class="required-label">*&nbsp;</span>עדיפות</label>
+                                <div class="col-md-2">&nbsp;</div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <!-- End of Modal Body -->
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <!-- Button -->
+                    <div class="form-group">
+                        <!--                                    <label class="col-md-5 control-label" for="singlebutton"></label>-->
+                        <div class="col-md-5">&nbsp;</div>
+                        <div class="col-md-2">
+                            <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-show="modalStatus == 1" ng-click="addUser()" data-dismiss="modal">הוסף עובד</button>
+                            <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-show="modalStatus == 2" ng-click="update(user._id)" data-dismiss="modal">עדכן</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Modal Footer -->
+            </div>
+            <!-- End of Modal Content -->
+        </div>
+        <!-- End of Modal Dialog -->
     </div>
+    <!-- End of New Employee Modal -->
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>שם מלא</th>
+            <th>תפקיד</th>
+            <th>טלפון נייד</th>
+            <th>E-Mail</th>
+            <th>סטטוס</th>
+            <th>אפשרויות</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in usersList">
+            <td>{{user.firstname + " " + user.lastname}}</td>
+            <td>{{user.role}}</td>
+            <td>{{user.phoneNumber}}</td>
+            <td>{{user.email}}</td>
+            <td>
+                <!--Active:-->
+                <small class="label label-success" ng-if="user.status == 'active'">
+                    <i class="fa fa-clock-o">פעיל</i>
+                </small>
+
+                <!--Inactive:-->
+                <small class="label label-danger" ng-if="user.status == 'inactive'">
+                    <i class="fa fa-clock-o">לא פעיל</i>
+                </small>
+
+                <!--Pending:-->
+                <small class="label label-warning" ng-if="user.status == 'pending'">
+                    <i class="fa fa-clock-o">חפיפה</i>
+                </small>
+            </td>
+            <td class="icon-color">
+                <small class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#employeeModal" ng-click="edit(user._id)"></small>&nbsp;
+                <small class="glyphicon glyphicon-remove-circle" ng-click="remove(user._id)"></small>&nbsp;
+                <!--<small class="glyphicon glyphicon-remove-circle" data-toggle="modal" data-target="#myModal"></small>&nbsp;-->
+                <!-- Trigger the modal with a button -->
+                <!-- Modal for popup massage -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <div class="col-md-6">
+                                    <button type="button" class="close pull-left" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <h3 class="modal-title">
+                                        {{ modalTitle }}
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Modal Body -->
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="comment">אתה בטוח שברצונך למחוק את המשתמש?</label>
+                                </div>
+                            </div>
+
+                            <!-- Modal Footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="remove(user._id)">אישור</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">ביטול</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
