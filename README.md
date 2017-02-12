@@ -1,5 +1,4 @@
 # Shifts-Management-System
-WEB Application
 ![alt tag](https://github.com/GalZaken/Shifts-Management-System/blob/master/public/images/logo.jpg?raw=true)
 
 <br/>
