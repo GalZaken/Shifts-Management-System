@@ -1,3 +1,7 @@
-/**
- * Created by Gal Zaken on 1/11/2017.
- */
+angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http', function ($scope, $http) {
+    // SCHEDULE CONTROLLER:
+
+    $scope.date = "\n01/01/17";
+
+
+}]);
