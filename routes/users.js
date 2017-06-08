@@ -16,6 +16,7 @@ router.get('/logout', function(req, res) {
 
 // GET Login:
 router.get('/login', function(req, res) {
+    // User.createAdminUser(); If need to create admin User.
     res.render('login', { title: 'Login' });
 });
 

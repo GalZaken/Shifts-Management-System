@@ -29,6 +29,7 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
     $scope.addUser = function() {
         // ADD NEW USER INTO DB:
         newUser = createUserObject();
+        console.log(newUser);
 
         $http.post('/users/usersList', newUser).then(function(response) {
             console.log(response);
@@ -71,6 +72,8 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
             $scope.selectedRoleValue = user.selectedRoleValue;
             $scope.selectedStatusValue = user.selectedStatusValue;
             $scope.selectedPriorityValue = user.selectedPriorityValue;
+            $scope.selectedMinShiftsValue = user.selectedMinShiftsValue;
+            $scope.isAdmin = user.isAdmin;
         });
 
         console.log($scope.user);
@@ -93,6 +96,12 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
     }
 
     function createUserObject() {
+
+        // if user object is admin:
+        var isAdmin = false;
+        if ($scope.selectedRoleValue == 'מנהל')
+            isAdmin = true;
+
         return {
             username: $scope.username,
             password: $scope.idNumber,
@@ -103,7 +112,9 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
             phoneNumber: $scope.phoneNumber,
             role: $scope.selectedRoleValue,
             status: $scope.selectedStatusValue,
-            priority: $scope.selectedPriorityValue
+            priority: $scope.selectedPriorityValue,
+            minShifts: $scope.selectedMinShifts,
+            isAdmin: isAdmin
         };
     }
 
@@ -117,6 +128,7 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
         $scope.selectedRoleValue = "";
         $scope.selectedStatusValue = "";
         $scope.selectedPriorityValue = "";
+        $scope.selectedMinShifts = "";
     }
 
     function isSelected(selectedNumber) {

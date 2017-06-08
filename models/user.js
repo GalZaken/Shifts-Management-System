@@ -13,6 +13,7 @@ var UserSchema = new mongoose.Schema({
     role: String,
     status: String,
     priority: String,
+    minShifts: String,
     isAdmin: String
 });
 
@@ -72,7 +73,9 @@ module.exports.createAdminUser = function() {
         phoneNumber: 'none',
         role: 'Admin',
         status: 'פעיל',
-        priority: 'none'
+        priority: 'none',
+        minShifts: 'none',
+        isAdmin: true
     });
 
     User.createUser(adminUser, function(err, user){
