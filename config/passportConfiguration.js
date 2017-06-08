@@ -28,10 +28,12 @@ module.exports = function(passport) {
     }));
 
     passport.serializeUser(function(user, done) {
+        console.log('serializeUser has been called!');
         done(null, user.id);
     });
 
     passport.deserializeUser(function(id, done) {
+        console.log('deserializeUser has been called!');
         User.getUserById(id, function(err, user) {
             done(err, user);
         });

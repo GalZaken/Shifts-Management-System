@@ -4,6 +4,7 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
     $scope.modalTitle = "";
     $scope.modalStatus = 1;
     $scope.user = {};
+    $scope.usersList = {};
 
     var refresh = function() {
         // GET USERS LIST FROM DB:
@@ -20,7 +21,7 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
             deselect();
         }
         else {
-            $scope.modalTitle = 'עדכון פרטים';
+            $scope.modalTitle = 'עריכה';
             $scope.modalStatus = 2;
         }
     };
@@ -39,10 +40,16 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
     $scope.remove = function(id) {
         // REMOVE USER FROM DB:
         $http.delete('/users/usersList/' + id).then(function(response) {
-            console.log(response);
             refresh();
         });
     };
+
+    $scope.removeSelected = function() {
+        // REMOVE USER FROM DB:
+        $http.delete('/users/usersList/' + selectedUserID).then(function(response) {
+            refresh();
+        });
+    }
 
     $scope.edit = function(id) {
         // EDIT USER:
@@ -80,6 +87,10 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
             refresh();
         });
     };
+
+    $scope.selectUserID = function(id) {
+        selectedUserID = id;
+    }
 
     function createUserObject() {
         return {

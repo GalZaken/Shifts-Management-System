@@ -1,6 +1,5 @@
 # Shifts-Management-System
-![alt tag](https://github.com/GalZaken/Shifts-Management-System/blob/master/public/images/logo.jpg?raw=true)
-
+WEB Application
 <br/>
 ## About The Project
 This is the final project of Bs.c software engineering bachelor degree at<br/>

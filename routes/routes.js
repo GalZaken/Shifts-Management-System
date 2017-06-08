@@ -1,5 +1,6 @@
 exports.index = function(req, res) {
-    res.render('index', { username: req.user.username });
+    if (req.user)
+        res.render('index', { username: req.user.username });
 }
 
 exports.ensureAuthenticated = function(req, res, next) {

@@ -12,7 +12,8 @@ var UserSchema = new mongoose.Schema({
     phoneNumber: String,
     role: String,
     status: String,
-    priority: String
+    priority: String,
+    isAdmin: String
 });
 
 var User = module.exports = mongoose.model('users', UserSchema);
@@ -57,14 +58,26 @@ module.exports.comparePassword = function(candidatePassword, hash, callback) {
     });
 }
 
-//     module.exports.createAdminUser = function() {
-//         var newUser = new User({
-//             username: 'admin',
-//             password: '123'
-//         });
-//
-//         User.createUser(newUser, function(err, user){
-//             if(err) throw err;
-//             console.log(user);
-//         });
-// }
+// FUNCTION FOR CREATING ADMIN USER:
+module.exports.createAdminUser = function() {
+
+    // CREATE ADMIN USER SCHEMA:
+    var adminUser = new User({
+        username: 'admin',
+        password: '123',
+        firstname: 'admin',
+        lastname: 'admin',
+        idNumber: 'none',
+        email: 'Admin@mail.com',
+        phoneNumber: 'none',
+        role: 'Admin',
+        status: 'פעיל',
+        priority: 'none'
+    });
+
+    User.createUser(adminUser, function(err, user){
+        if(err) throw err;
+        console.log(user);
+    });
+}
+
