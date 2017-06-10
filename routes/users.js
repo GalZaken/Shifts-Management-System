@@ -8,6 +8,8 @@ var passport = require('passport');
 var passportConfiguration = require('../config/passportConfiguration');
 passportConfiguration(passport);
 
+var currentUser;
+
 // GET Logout:
 router.get('/logout', function(req, res) {
     req.logout();
@@ -22,7 +24,14 @@ router.get('/login', function(req, res) {
 
 // POST Login:
 router.post('/login', passport.authenticate('local-login', {failureRedirect:'/users/login'}), function(req, res) {
+
+    currentUser =  req.user;
     res.redirect('/');
+});
+
+router.get('/currentUser', function(req, res) {
+    console.log('INSIDE USERS ROUTER - Handling GET /currentUser');
+    res.status(200).json(currentUser);
 });
 
 // GET Users List:
