@@ -14,7 +14,7 @@ var UserSchema = new mongoose.Schema({
     status: String,
     priority: String,
     minShifts: String,
-    isAdmin: String
+    isAdmin: Boolean
 });
 
 var User = module.exports = mongoose.model('users', UserSchema);

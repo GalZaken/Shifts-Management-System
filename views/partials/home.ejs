@@ -13,8 +13,8 @@
         <div class="col-lg-8" id="manager-msg">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <div class="pull-left" ><!-- shold be disabled if not admin -->
-                        <a  class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal"></a>
+                    <div class="pull-left"><!-- shold be disabled if not admin -->
+                        <a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#editMessageModal" ng-show="isAdmin()"></a>
                     </div>
                     <h3 class="panel-title">הודעות מנהל</h3>
                 </div>
@@ -92,26 +92,40 @@
     </div>
     <!-- END OF THIRD ROW -->
 
-    <!-- Modal for popup massage (admin only) -->
-    <div id="myModal" class="modal fade" role="dialog">
+    <!-- Edit Message Modal (admin only) -->
+    <div id="editMessageModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-            <!-- Modal content-->
+            <!-- Modal Content-->
             <div class="modal-content">
+                <!-- Modal Header -->
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title">ערוך הודעה</h3>
+                    <div class="col-md-6">
+                        <button type="button" class="close pull-left" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="modal-title">ערוך הודעה</h3>
+                    </div>
                 </div>
+                <!-- End of Modal Header -->
+
+                <!-- Modal Body -->
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="comment">הודעה:</label>
                         <textarea class="form-control" rows="5" id="adminComment" ng-model="adminComment"></textarea>
                     </div>
                 </div>
+                <!-- End of Modal Body -->
+
+                <!-- Modal Footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="updateAdminComment()">שמור</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">בטל</button>
                 </div>
+                <!-- End of Modal Footer -->
             </div>
+            <!-- End of Modal Content -->
         </div>
+        <!-- End of Modal Dialog -->
     </div>
+    <!-- End of Edit Message Modal -->
 </div>

@@ -1,4 +1,7 @@
 angular.module('ShiftsManagerApp').controller('homeCtrl', ['$scope', '$http', function ($scope, $http) {
+
+    $scope.adminComment = "";
+
     // GET THE USER SESSION:
     $scope.currentUser = {};
     getCurrentUser();
@@ -18,8 +21,12 @@ angular.module('ShiftsManagerApp').controller('homeCtrl', ['$scope', '$http', fu
     }
 
     $scope.isAdmin = function() {
-        if ($scope.currentUser.isAdmin)
+        if ($scope.currentUser.isAdmin) {
+            console.log($scope.currentUser);
+            console.log($scope.currentUser.isAdmin);
+            console.log("in func");
             return true;
+        }
         else
             return false;
     }
