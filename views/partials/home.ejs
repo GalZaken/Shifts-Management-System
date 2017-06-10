@@ -4,7 +4,7 @@
         <!-- WELCOME -->
         <div class="col-lg-4" id="wellcome">
             <div class="panel panel-default">
-                <div class="panel-body">ברוך הבא</div>
+                <div class="panel-body">ברוך הבא {{ currentUser.username + " " }} </div>
             </div>
         </div>
         <!--END OF WELCOME -->
@@ -14,12 +14,12 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <div class="pull-left" ><!-- shold be disabled if not admin -->
-                        <a  class="glyphicon glyphicon-pencil"  data-toggle="modal" data-target="#myModal"></a>
+                        <a  class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal"></a>
                     </div>
                     <h3 class="panel-title">הודעות מנהל</h3>
                 </div>
                 <div class="panel-body">
-                    {{displayedComment}}
+                    {{ displayedComment }}
                 </div>
             </div>
             <!--END OF MASSAGE -->
