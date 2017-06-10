@@ -21,12 +21,8 @@ angular.module('ShiftsManagerApp').controller('homeCtrl', ['$scope', '$http', fu
     }
 
     $scope.isAdmin = function() {
-        if ($scope.currentUser.isAdmin) {
-            console.log($scope.currentUser);
-            console.log($scope.currentUser.isAdmin);
-            console.log("in func");
+        if ($scope.currentUser.isAdmin)
             return true;
-        }
         else
             return false;
     }

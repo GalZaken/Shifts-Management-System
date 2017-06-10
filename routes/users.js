@@ -18,20 +18,27 @@ router.get('/logout', function(req, res) {
 
 // GET Login:
 router.get('/login', function(req, res) {
-     User.createAdminUser(); // If need to create admin User.
+    // User.createAdminUser(); // If need to create admin User.
     res.render('login', { title: 'Login' });
 });
 
 // POST Login:
 router.post('/login', passport.authenticate('local-login', {failureRedirect:'/users/login'}), function(req, res) {
 
-    currentUser =  req.user;
+    currentUser = req.user;
     res.redirect('/');
 });
 
 router.get('/currentUser', function(req, res) {
     console.log('INSIDE USERS ROUTER - Handling GET /currentUser');
-    res.status(200).json(currentUser);
+
+    var id = currentUser._id;
+    User.getUserById(id, function(err, docs) {
+        if (err)
+            console.log('ERROR: Get current user in users collection!');
+        else
+            res.status(200).json(docs);
+    });
 });
 
 // GET Users List:

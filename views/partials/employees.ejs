@@ -1,6 +1,6 @@
 <div class="container" dir="rtl">
     <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#employeeModal" ng-click="setModalTitle(1)">הוספת עובד</button>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#employeeModal" ng-show="isAdmin()" ng-click="setModalTitle(1)">הוספת עובד</button>
     <br>
     <br>
     <br>
@@ -195,7 +195,7 @@
             <th>טלפון נייד</th>
             <th>E-Mail</th>
             <th>סטטוס</th>
-            <th>אפשרויות</th>
+            <th ng-show="isAdmin()" >אפשרויות</th>
         </tr>
         </thead>
         <tbody>
@@ -220,7 +220,7 @@
                     <i class="fa fa-clock-o">חפיפה</i>
                 </small>
             </td>
-            <td class="icon-color">
+            <td class="icon-color" ng-show="isAdmin()">
                 <small class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#employeeModal" ng-click="edit(user._id)"></small>&nbsp;
                 <small class="glyphicon glyphicon-remove-circle" data-toggle="modal" data-target="#confirmModal" ng-click="selectUserID(user._id)"></small>&nbsp;
             </td>

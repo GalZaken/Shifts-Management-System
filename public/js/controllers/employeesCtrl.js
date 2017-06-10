@@ -6,6 +6,24 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
     $scope.user = {};
     $scope.usersList = {};
 
+    // GET THE USER SESSION:
+    $scope.currentUser = {};
+    getCurrentUser();
+
+    function getCurrentUser() {
+        // GET CURRENT USER OBJECT:
+        $http.get('users/currentUser').success(function (response) {
+            $scope.currentUser = response;
+        });
+    };
+
+    $scope.isAdmin = function() {
+        if ($scope.currentUser.isAdmin)
+            return true;
+        else
+            return false;
+    };
+
     var refresh = function() {
         // GET USERS LIST FROM DB:
         $http.get('/users/usersList').success(function (response) {
@@ -73,7 +91,6 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
             $scope.selectedStatusValue = user.selectedStatusValue;
             $scope.selectedPriorityValue = user.selectedPriorityValue;
             $scope.selectedMinShiftsValue = user.selectedMinShiftsValue;
-            $scope.isAdmin = user.isAdmin;
         });
 
         console.log($scope.user);
@@ -88,6 +105,7 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
         $http.put('/users/usersList/' + id, updatedUser).then(function(response) {
             console.log(response);
             refresh();
+            getCurrentUser();
         });
     };
 
