@@ -14,6 +14,7 @@ var session      = require('express-session');
 
 var routes = require('./routes/routes');
 var users = require('./routes/users');
+var comment = require('./routes/comment');
 
 var databaseConfiguration = require('./config/databaseConfiguration.js');
 mongoose.connect(databaseConfiguration.dbURL, function (error) {
@@ -62,6 +63,7 @@ app.use(flash());
 app.get('/partials/:name', routes.partials);
 app.get('/', routes.ensureAuthenticated, routes.index);
 app.use('/users', users);
+app.use('/comment', comment);
 app.get('*', routes.index);
 
 // -------------------------------------------------------------------------------------

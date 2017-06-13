@@ -1,6 +1,8 @@
 angular.module('ShiftsManagerApp').controller('homeCtrl', ['$scope', '$http', function ($scope, $http) {
 
-    $scope.adminComment = "";
+    //NEED TO GET COMMENT FROM DB
+    $scope.adminComment = {};
+    getAdminComment();
 
     // GET THE USER SESSION:
     $scope.currentUser = {};
@@ -13,9 +15,21 @@ angular.module('ShiftsManagerApp').controller('homeCtrl', ['$scope', '$http', fu
         });
     };
 
+    function getAdminComment() {
+        // GET CURRENT USER OBJECT:
+        $http.get('comment/adminComment').success(function (response) {
+            $scope.adminComment = response;
+        });
+    };
+
     $scope.updateAdminComment = function() {
-        var adminComment = $scope.adminComment;
+        var adminComment = $scope.adminComment.comment;
         // push adminComment to DB
+
+        $http.put('/comment/adminComment/:id' + $scope.adminComment.id, adminComment).then(function(response) {
+            console.log(response);
+            getAdminComment();
+        });
 
         $scope.displayedComment = adminComment;
     }
