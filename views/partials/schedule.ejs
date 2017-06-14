@@ -2,7 +2,7 @@
     <h2>סידור עבודה</h2>
     <br>
     <br>
-    <!-- Shifts Table: -->
+    <!-- Shifts Table For User: -->
     <table class="table table-hover">
         <thead>
         <tr>
@@ -18,8 +18,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="shift in userShifts">
-            <td>{{ shift.shiftName }}</td>
-
+            <th>{{ shift.shiftName }}</th>
             <td>
                 <small class="glyphicon glyphicon-ok icon icon-grn-color" ng-show="shift.shifts[0]" ng-click="setSelected(0)"></small>
                 <small class="glyphicon glyphicon-remove icon icon-red-color" ng-show="!shift.shifts[0]" ng-click="setSelected(0)"></small>&nbsp;
@@ -51,4 +50,7 @@
         </tr>
         </tbody>
     </table>
+
+    <!-- Button for save user shifts: -->
+    <button type="button" class="btn btn-info btn-lg" ng-click="updateUserShifts()">הזן סידור עבודה</button>
 </div>

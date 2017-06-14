@@ -15,6 +15,7 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
         $http.get('users/currentUser').success(function (response) {
             $scope.currentUser = response;
         });
+        console.log($scope.currentUser);
     };
 
     $scope.isAdmin = function() {
@@ -111,14 +112,31 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
 
     $scope.selectUserID = function(id) {
         selectedUserID = id;
-    }
+    };
 
     function createUserObject() {
 
-        // if user object is admin:
         var isAdmin = false;
-        if ($scope.selectedRoleValue == 'Admin')
+        var userShifts = {
+            morning: {
+                shiftName: "Morning",
+                shifts: [false, false, false, false, false, false, false]
+            },
+            evening: {
+                shiftName: "Evening",
+                shifts: [false, false, false, false, false, false, false]
+            },
+            night: {
+                shiftName: "Night",
+                shifts: [false, false, false, false, false, false, false]
+            }
+        };
+
+        // if user object is admin:
+        if ($scope.selectedRoleValue == 'Admin') {
             isAdmin = true;
+            userShifts = {};
+        }
 
         return {
             username: $scope.username,
@@ -131,8 +149,9 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
             role: $scope.selectedRoleValue,
             status: $scope.selectedStatusValue,
             priority: $scope.selectedPriorityValue,
-            minShifts: $scope.selectedMinShifts,
-            isAdmin: isAdmin
+            minShifts: $scope.selectedMinShiftsValue,
+            isAdmin: isAdmin,
+            userShifts: userShifts
         };
     }
 

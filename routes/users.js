@@ -8,8 +8,6 @@ var passport = require('passport');
 var passportConfiguration = require('../config/passportConfiguration');
 passportConfiguration(passport);
 
-var currentUser;
-
 // GET Logout:
 router.get('/logout', function(req, res) {
     req.logout();
@@ -25,15 +23,13 @@ router.get('/login', function(req, res) {
 
 // POST Login:
 router.post('/login', passport.authenticate('local-login', {failureRedirect:'/users/login'}), function(req, res) {
-
-    currentUser = req.user;
     res.redirect('/');
 });
 
 router.get('/currentUser', function(req, res) {
     console.log('INSIDE USERS ROUTER - Handling GET /currentUser');
 
-    var id = currentUser._id;
+    var id = req.user._id;
     User.getUserById(id, function(err, docs) {
         if (err)
             console.log('ERROR: Get current user in users collection!');

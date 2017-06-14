@@ -14,7 +14,8 @@ var UserSchema = new mongoose.Schema({
     status: String,
     priority: String,
     minShifts: String,
-    isAdmin: Boolean
+    isAdmin: Boolean,
+    userShifts: {}
 });
 
 var User = module.exports = mongoose.model('users', UserSchema);
@@ -75,7 +76,8 @@ module.exports.createAdminUser = function() {
         status: 'פעיל',
         priority: 'none',
         minShifts: 'none',
-        isAdmin: true
+        isAdmin: true,
+        userShifts: null
     });
 
     User.createUser(adminUser, function(err, user){
