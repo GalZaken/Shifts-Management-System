@@ -117,7 +117,7 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
 
         // if user object is admin:
         var isAdmin = false;
-        if ($scope.selectedRoleValue == 'מנהל')
+        if ($scope.selectedRoleValue == 'Admin')
             isAdmin = true;
 
         return {

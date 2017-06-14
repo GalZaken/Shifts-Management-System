@@ -37,7 +37,7 @@ router.get('/adminComment', function(req, res) {
 router.put('/adminComment/:id', function(req, res) {
     console.log('INSIDE COMMENT ROUTER - Handling PUT /comment/adminComment/:id');
 
-    
+
     var id = req.params.id;
     var updateComment = new AdminComment(req.body);
     updateComment._id = id;
