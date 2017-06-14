@@ -28,7 +28,7 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
 
     $scope.updateUserShifts = function() {
         // CHECK IF SHIFTS FILLED ACCORDING TO USER MIN SHIFTS:
-        if (!shiftsNotValid()) {
+        if (!shiftsValid()) {
             alert("מינום המשמרות להזנה: " + $scope.currentUser.minShifts);
             return;
         }
@@ -38,6 +38,7 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
         $http.put('/users/usersList/' + updatedUser._id, updatedUser).then(function(response) {
             // console.log(response.data);
         });
+        alert("המשמרות הוזנו בהצלחה");
     }
 
     function shiftsValid() {

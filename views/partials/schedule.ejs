@@ -2,55 +2,59 @@
     <h2>סידור עבודה</h2>
     <br>
     <br>
-    <!-- Shifts Table For User: -->
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>משמרות</th>
-            <th>יום ראשון</th>
-            <th>יום שני</th>
-            <th>יום שלישי</th>
-            <th>יום רביעי</th>
-            <th>יום חמישי</th>
-            <th>יום שישי</th>
-            <th>יום שבת</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="shift in userShifts">
-            <th>{{ shift.shiftName }}</th>
-            <td>
-                <small class="glyphicon glyphicon-ok icon icon-grn-color" ng-show="shift.shifts[0]" ng-click="setSelected(0)"></small>
-                <small class="glyphicon glyphicon-remove icon icon-red-color" ng-show="!shift.shifts[0]" ng-click="setSelected(0)"></small>&nbsp;
-            </td>
-            <td>
-                <small class="glyphicon glyphicon-ok icon icon-grn-color" ng-show="shift.shifts[1]" ng-click="setSelected(1)"></small>
-                <small class="glyphicon glyphicon-remove icon icon-red-color" ng-show="!shift.shifts[1]" ng-click="setSelected(1)"></small>&nbsp;
-            </td>
-            <td>
-                <small class="glyphicon glyphicon-ok icon icon-grn-color" ng-show="shift.shifts[2]" ng-click="setSelected(2)"></small>
-                <small class="glyphicon glyphicon-remove icon icon-red-color" ng-show="!shift.shifts[2]" ng-click="setSelected(2)"></small>&nbsp;
-            </td>
-            <td>
-                <small class="glyphicon glyphicon-ok icon icon-grn-color" ng-show="shift.shifts[3]" ng-click="setSelected(3)"></small>
-                <small class="glyphicon glyphicon-remove icon icon-red-color" ng-show="!shift.shifts[3]" ng-click="setSelected(3)"></small>&nbsp;
-            </td>
-            <td>
-                <small class="glyphicon glyphicon-ok icon icon-grn-color" ng-show="shift.shifts[4]" ng-click="setSelected(4)"></small>
-                <small class="glyphicon glyphicon-remove icon icon-red-color" ng-show="!shift.shifts[4]" ng-click="setSelected(4)"></small>&nbsp;
-            </td>
-            <td>
-                <small class="glyphicon glyphicon-ok icon icon-grn-color" ng-show="shift.shifts[5]" ng-click="setSelected(5)"></small>
-                <small class="glyphicon glyphicon-remove icon icon-red-color" ng-show="!shift.shifts[5]" ng-click="setSelected(5)"></small>&nbsp;
-            </td>
-            <td>
-                <small class="glyphicon glyphicon-ok icon icon-grn-color" ng-show="shift.shifts[6]" ng-click="setSelected(6)"></small>
-                <small class="glyphicon glyphicon-remove icon icon-red-color" ng-show="!shift.shifts[6]" ng-click="setSelected(6)"></small>&nbsp;
-            </td>
-        </tr>
-        </tbody>
-    </table>
 
-    <!-- Button for save user shifts: -->
-    <button type="button" class="btn btn-info btn-lg" ng-click="updateUserShifts()">הזן סידור עבודה</button>
+    <!-- Div for regular user: -->
+    <div ng-show="!isAdmin()">
+        <!-- Shifts Table For User: -->
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>משמרות</th>
+                <th>יום ראשון</th>
+                <th>יום שני</th>
+                <th>יום שלישי</th>
+                <th>יום רביעי</th>
+                <th>יום חמישי</th>
+                <th>יום שישי</th>
+                <th>יום שבת</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="shift in userShifts">
+                <th>{{ shift.shiftName }}</th>
+                <td>
+                    <small class="glyphicon glyphicon-ok icon icon-grn-color" ng-show="shift.shifts[0]" ng-click="setSelected(0)"></small>
+                    <small class="glyphicon glyphicon-remove icon icon-red-color" ng-show="!shift.shifts[0]" ng-click="setSelected(0)"></small>&nbsp;
+                </td>
+                <td>
+                    <small class="glyphicon glyphicon-ok icon icon-grn-color" ng-show="shift.shifts[1]" ng-click="setSelected(1)"></small>
+                    <small class="glyphicon glyphicon-remove icon icon-red-color" ng-show="!shift.shifts[1]" ng-click="setSelected(1)"></small>&nbsp;
+                </td>
+                <td>
+                    <small class="glyphicon glyphicon-ok icon icon-grn-color" ng-show="shift.shifts[2]" ng-click="setSelected(2)"></small>
+                    <small class="glyphicon glyphicon-remove icon icon-red-color" ng-show="!shift.shifts[2]" ng-click="setSelected(2)"></small>&nbsp;
+                </td>
+                <td>
+                    <small class="glyphicon glyphicon-ok icon icon-grn-color" ng-show="shift.shifts[3]" ng-click="setSelected(3)"></small>
+                    <small class="glyphicon glyphicon-remove icon icon-red-color" ng-show="!shift.shifts[3]" ng-click="setSelected(3)"></small>&nbsp;
+                </td>
+                <td>
+                    <small class="glyphicon glyphicon-ok icon icon-grn-color" ng-show="shift.shifts[4]" ng-click="setSelected(4)"></small>
+                    <small class="glyphicon glyphicon-remove icon icon-red-color" ng-show="!shift.shifts[4]" ng-click="setSelected(4)"></small>&nbsp;
+                </td>
+                <td>
+                    <small class="glyphicon glyphicon-ok icon icon-grn-color" ng-show="shift.shifts[5]" ng-click="setSelected(5)"></small>
+                    <small class="glyphicon glyphicon-remove icon icon-red-color" ng-show="!shift.shifts[5]" ng-click="setSelected(5)"></small>&nbsp;
+                </td>
+                <td>
+                    <small class="glyphicon glyphicon-ok icon icon-grn-color" ng-show="shift.shifts[6]" ng-click="setSelected(6)"></small>
+                    <small class="glyphicon glyphicon-remove icon icon-red-color" ng-show="!shift.shifts[6]" ng-click="setSelected(6)"></small>&nbsp;
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- Button for save user shifts: -->
+        <button type="button" class="btn btn-info btn-lg" ng-click="updateUserShifts()">הזן סידור עבודה</button>
+    </div>
 </div>
