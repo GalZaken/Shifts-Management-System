@@ -18,6 +18,7 @@ router.get('/logout', function(req, res) {
 
 // GET Login:
 router.get('/login', function(req, res) {
+    isAdminExist();
     // User.createAdminUser(); // If need to create admin User.
     res.render('login', { title: 'Login' });
 });
@@ -101,5 +102,20 @@ router.put('/usersList/:id', function(req, res) {
             res.status(200).json(docs);
     });
 });
+
+function isAdminExist() {
+    console.log('INSIDE isAdminExist FUNCTION:');
+
+    User.getUserByUsername('admin', function(err, docs) {
+        if (err)
+            console.log('ERROR: Get admin user from users collection!');
+        else if (!docs) {
+            console.log('Create Admin User');
+            User.createAdminUser();
+        }
+        else
+            return;
+    });
+}
 
 module.exports = router;

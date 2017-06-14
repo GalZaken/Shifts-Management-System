@@ -15,11 +15,11 @@ module.exports.createAdminComment = function (comment, callback) {
     comment.save(callback);
 };
 
-module.exports.updateAdminComment = function(id, comment, callback) {
+module.exports.updateAdminCommentByID = function(id, comment, callback) {
     AdminComment.findByIdAndUpdate(id, comment, callback);
 };
 
 module.exports.getAdminComment = function(callback) {
     var query = {};
-    AdminComment.find(query, callback);
+    AdminComment.findOne(query, callback);
 };

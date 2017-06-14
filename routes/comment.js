@@ -18,6 +18,17 @@ router.get('/adminComment', function(req, res) {
                     res.status(200).json(docs);
             });
         }
+        else if (!docs) {
+            var adminComment = new AdminComment ({ comment: "Default Message" });
+            AdminComment.createAdminComment(adminComment, function (err, docs) {
+                if (err)
+                    console.log('ERROR: Create comment in adminComment collection!');
+                else {
+                    console.log('Admin comment has been created');
+                    res.status(200).json(docs);
+                }
+            });
+        }
         else
             res.status(200).json(docs);
     });
@@ -25,10 +36,14 @@ router.get('/adminComment', function(req, res) {
 
 router.put('/adminComment/:id', function(req, res) {
     console.log('INSIDE COMMENT ROUTER - Handling PUT /comment/adminComment/:id');
+
+    
     var id = req.params.id;
     var updateComment = new AdminComment(req.body);
+    updateComment._id = id;
 
-    AdminComment.updateUserById(id, updateComment, function(err, docs) {
+    console.log('ID: ' + id);
+    AdminComment.updateAdminCommentByID(id, updateComment, function(err, docs) {
         if (err)
             console.log('ERROR: Update admin comment in adminComment collection!');
         else
