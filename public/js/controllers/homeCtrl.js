@@ -20,7 +20,7 @@ angular.module('ShiftsManagerApp').controller('homeCtrl', ['$scope', '$http', fu
     function getAdminComment() {
         // GET CURRENT USER OBJECT:
         $http.get('comment/adminComment').success(function (response) {
-            //console.log(response);
+            // console.log(response);
             $scope.adminComment = response;
             $scope.displayedComment = $scope.adminComment.comment;
         });
@@ -32,7 +32,7 @@ angular.module('ShiftsManagerApp').controller('homeCtrl', ['$scope', '$http', fu
 
         // push adminComment to DB
         $http.put('/comment/adminComment/' + id, { comment: comment }).then(function(response) {
-            //console.log(response);
+            // console.log(response);
             getAdminComment();
         });
     }
