@@ -73,11 +73,11 @@ module.exports.createAdminUser = function() {
         email: 'Admin@mail.com',
         phoneNumber: 'none',
         role: 'Admin',
-        status: 'פעיל',
+        status: 'inactive',
         priority: 'none',
         minShifts: 'none',
         isAdmin: true,
-        userShifts: null
+        userShifts: {}
     });
 
     User.createUser(adminUser, function(err, user){

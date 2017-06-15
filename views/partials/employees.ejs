@@ -103,9 +103,9 @@
                                 <div class="col-md-2">&nbsp;</div>
                                 <div class="col-md-5">
                                     <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedRoleValue" required>
-                                        <option value="Admin">Admin</option>
-                                        <option value="Shift Manager">Shift Manager</option>
-                                        <option value="Simple Worker">Simple Worker</option>
+                                        <option value="Admin">מנהל</option>
+                                        <option value="Shift-Supervisor">אחמ"ש</option>
+                                        <option value="Guard">מאבטח</option>
                                     </select>
                                 </div>
                                 <label class="col-md-3 control-label" for="selectbasic">
@@ -118,9 +118,9 @@
                                 <div class="col-md-2">&nbsp;</div>
                                 <div class="col-md-5">
                                     <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedStatusValue" required>
-                                        <option value="active">Active</option>
-                                        <option value="inactive">Not Active</option>
-                                        <option value="pending">Intern</option>
+                                        <option value="active">פעיל</option>
+                                        <option value="inactive">לא פעיל</option>
+                                        <option value="pending">חפיפה</option>
                                     </select>
                                 </div>
                                 <label class="col-md-3 control-label" for="selectbasic">
@@ -133,9 +133,9 @@
                                 <div class="col-md-2">&nbsp;</div>
                                 <div class="col-md-5">
                                     <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedPriorityValue" required>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                        <option value="1">High</option>
+                                        <option value="2">Medium</option>
+                                        <option value="3">Low</option>
                                     </select>
                                 </div>
                                 <label class="col-md-3 control-label" for="selectbasic">
@@ -151,10 +151,10 @@
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
-                                        <option value="3">4</option>
-                                        <option value="3">5</option>
-                                        <option value="3">6</option>
-                                        <option value="3">7</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
                                     </select>
                                 </div>
                                 <label class="col-md-3 control-label" for="selectbasic">
@@ -201,7 +201,11 @@
         <tbody>
         <tr ng-repeat="user in usersList">
             <td>{{user.firstname + " " + user.lastname}}</td>
-            <td>{{user.role}}</td>
+            <td>
+                <span ng-if="user.role == 'Admin'">מנהל</span>
+                <span ng-if="user.role == 'Shift-Supervisor'">אחמ"ש</span>
+                <span ng-if="user.role == 'Guard'">מאבטח</span>
+            </td>
             <td>{{user.phoneNumber}}</td>
             <td>{{user.email}}</td>
             <td>

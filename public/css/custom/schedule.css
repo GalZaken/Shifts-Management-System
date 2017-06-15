@@ -3,10 +3,34 @@
     cursor: pointer;
 }
 
-.icon-grn-color {
+.icon-color-green {
     color: Green;
 }
 
-.icon-red-color {
+.icon-color-red {
     color: Red;
+}
+
+.row {
+    margin-top: 40px;
+    padding: 0 10px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.panel-heading span {
+    margin-top: -18px;
+    font-size: 15px;
+}
+
+.admin-table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+thead td {
+    font-weight: bold;
+    vertical-align: middle;
 }

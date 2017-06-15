@@ -133,7 +133,7 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
         };
 
         // if user object is admin:
-        if ($scope.selectedRoleValue == 'Admin') {
+        if (!$scope.selectedRoleValue || $scope.selectedRoleValue == 'Admin') {
             isAdmin = true;
             userShifts = {};
         }
