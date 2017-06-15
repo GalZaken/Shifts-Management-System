@@ -109,8 +109,10 @@ function isAdminExist() {
             console.log('Create Admin User');
             User.createAdminUser();
         }
-        else
+        else {
+            console.log('Admin User Is Already Exist!');
             return;
+        }
     });
 }
 

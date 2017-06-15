@@ -17,7 +17,7 @@ angular.module('ShiftsManagerApp').controller('settingsCtrl', ['$scope', '$http'
     };
 
     var refresh = function() {
-        // GET USERS LIST FROM DB:
+        // GET POSITIONS LIST FROM DB:
         $http.get('/positions/positionsList').success(function (response) {
             $scope.positionsList = response;
         });

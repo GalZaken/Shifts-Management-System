@@ -4,12 +4,12 @@ var router = express.Router();
 var Schedule = require('../models/schedule');
 
 // Get Schedule From DB:
-router.get('/', function(req, res) {
-    console.log('INSIDE SCHEDULES ROUTER - Handling GET /schedules/');
+router.get('/schedulesList', function(req, res) {
+    console.log('INSIDE SCHEDULES ROUTER - Handling GET /schedules/schedulesList');
 
-    Schedule.getSchedule(function(err, docs) {
+    Schedule.getScheduleList(function(err, docs) {
         if (err)
-            console.log('ERROR: Get Schedule List from schedules collection!');
+            console.log('ERROR: Get Schedules List from schedules collection!');
         else
             res.status(200).json(docs);
     });

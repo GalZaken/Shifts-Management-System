@@ -74,6 +74,8 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
         }
     })
 
+
+
     $scope.positions = new Array();
     $scope.positions.push({ positionName: "Pos1", guardsArray: ["Yossi"] });
     $scope.positions.push({ positionName: "Pos2", guardsArray: ["Eli"] });

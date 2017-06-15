@@ -11,12 +11,12 @@ router.get('/adminComment', function(req, res) {
             console.log('ERROR: Get admin comment in adminComment collection!');
 
             //CREATE NEW SCHEMA
-            AdminComment.createAdminComment({ comment: "" }, function (err, docs) {
-                if (err)
-                    console.log('ERROR: Save comment in adminComment collection!');
-                else
-                    res.status(200).json(docs);
-            });
+            // AdminComment.createAdminComment({ comment: "" }, function (err, docs) {
+            //     if (err)
+            //         console.log('ERROR: Save comment in adminComment collection!');
+            //     else
+            //         res.status(200).json(docs);
+            // });
         }
         else if (!docs) {
             var adminComment = new AdminComment ({ comment: "Default Message" });
