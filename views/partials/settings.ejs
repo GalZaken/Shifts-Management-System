@@ -94,8 +94,8 @@
                         <!-- <label class="col-md-5 control-label" for="singlebutton"></label> -->
                         <div class="col-md-5">&nbsp;</div>
                         <div class="col-md-2">
-                            <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-show="modalStatus == 1" ng-click="addPosition()" data-dismiss="modal">הוסף עמדה</button>
-                            <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-show="modalStatus == 2" ng-click="update(position._id)" data-dismiss="modal">ערוך</button>
+                            <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-show="modalStatus == 1" ng-disabled="!isValid()" ng-click="addPosition()" data-dismiss="modal">הוסף עמדה</button>
+                            <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-show="modalStatus == 2" ng-disabled="!isValid()" ng-click="update(position._id)" data-dismiss="modal">ערוך</button>
                         </div>
                     </div>
                 </div>

@@ -77,6 +77,13 @@ angular.module('ShiftsManagerApp').controller('settingsCtrl', ['$scope', '$http'
         $scope.selectedPositionID = id;
     };
 
+    $scope.isValid = function() {
+        if (!$scope.positionName || $scope.positionName == "")
+            return false;
+
+        return true;
+    };
+
     // Private Methods:
 
     function createPositionObject() {

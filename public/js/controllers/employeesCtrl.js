@@ -114,6 +114,25 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
         selectedUserID = id;
     };
 
+    $scope.isValid = function() {
+        if (!$scope.username || $scope.username == "" || $scope.username == "admin")
+            return false;
+        if (!$scope.firstname || $scope.firstname == "")
+            return false;
+        if (!$scope.lastname || $scope.lastname == "")
+            return false;
+        if (!$scope.idNumber || $scope.idNumber == "")
+            return false;
+        if (!$scope.email || $scope.email == "")
+            return false;
+        if (!$scope.phoneNumber || $scope.phoneNumber == "")
+            return false;
+
+        return true;
+    };
+
+    // Private Methods:
+
     function createUserObject() {
 
         var isAdmin = false;
