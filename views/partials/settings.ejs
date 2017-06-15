@@ -1,7 +1,5 @@
 <div class="container" dir="rtl">
-    <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#position-modal" ng-click="setModalTitle(1)">הוספת עמדה</button>
-    <br>
+    <h2>הגדרות סידור עבודה</h2>
     <br>
     <br>
 
@@ -96,8 +94,8 @@
                         <!-- <label class="col-md-5 control-label" for="singlebutton"></label> -->
                         <div class="col-md-5">&nbsp;</div>
                         <div class="col-md-2">
-                            <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-show="modalStatus == 1" ng-click="addUser()" data-dismiss="modal">הוסף עמדה</button>
-                            <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-show="modalStatus == 2" ng-click="update(user._id)" data-dismiss="modal">ערוך</button>
+                            <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-show="modalStatus == 1" ng-click="addPosition()" data-dismiss="modal">הוסף עמדה</button>
+                            <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-show="modalStatus == 2" ng-click="update(position._id)" data-dismiss="modal">ערוך</button>
                         </div>
                     </div>
                 </div>
@@ -122,13 +120,10 @@
         <tr ng-repeat="position in positionsList">
             <td>{{ position.positionName }}</td>
             <td>
-                <span ng-if="position.inMorning == 1">בוקר</span>
-                <span ng-if="position.inEvening == 1">ערב</span>
-                <span ng-if="position.inNight == 1">לילה</span>
+                <span ng-if="position.inMorning">בוקר, </span>
+                <span ng-if="position.inEvening">ערב, </span>
+                <span ng-if="position.inNight">לילה</span>
             </td>
-            <td>{{user.phoneNumber}}</td>
-            <td>{{user.email}}</td>
-
             <td class="icon-color">
                 <small class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#position-modal" ng-click="edit(position._id)"></small>&nbsp;
                 <small class="glyphicon glyphicon-remove-circle" data-toggle="modal" data-target="#confirmModal" ng-click="selectPositionID(position._id)"></small>&nbsp;
@@ -136,6 +131,10 @@
         </tr>
         </tbody>
     </table>
+
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#position-modal" ng-click="setModalTitle(1)">הוספת עמדה</button>
+
 
     <!-- Confirm Delete Modal -->
     <div id="confirmModal" class="modal fade" role="dialog">

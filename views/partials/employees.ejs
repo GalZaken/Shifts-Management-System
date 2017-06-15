@@ -102,7 +102,7 @@
                             <div class="form-group">
                                 <div class="col-md-2">&nbsp;</div>
                                 <div class="col-md-5">
-                                    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedRoleValue" required>
+                                    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedRoleValue" ng-init="selectedRoleValue = 'Guard'" required>
                                         <option value="Admin">מנהל</option>
                                         <option value="Shift-Supervisor">אחמ"ש</option>
                                         <option value="Guard">מאבטח</option>
@@ -117,7 +117,7 @@
                             <div class="form-group">
                                 <div class="col-md-2">&nbsp;</div>
                                 <div class="col-md-5">
-                                    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedStatusValue" required>
+                                    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedStatusValue" ng-init="selectedStatusValue = 'active'" required>
                                         <option value="active">פעיל</option>
                                         <option value="inactive">לא פעיל</option>
                                         <option value="pending">חפיפה</option>
@@ -132,10 +132,10 @@
                             <div class="form-group">
                                 <div class="col-md-2">&nbsp;</div>
                                 <div class="col-md-5">
-                                    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedPriorityValue" required>
-                                        <option value="1">High</option>
-                                        <option value="2">Medium</option>
-                                        <option value="3">Low</option>
+                                    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedPriorityValue" ng-init="selectedPriorityValue = 1" required>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
                                     </select>
                                 </div>
                                 <label class="col-md-3 control-label" for="selectbasic">
@@ -147,7 +147,7 @@
                             <div class="form-group">
                                 <div class="col-md-2">&nbsp;</div>
                                 <div class="col-md-5">
-                                    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedMinShiftsValue" required>
+                                    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedMinShiftsValue" ng-init="selectedMinShiftsValue = 1"required>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>

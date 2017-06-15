@@ -57,12 +57,12 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
         });
     };
 
-    $scope.remove = function(id) {
-        // REMOVE USER FROM DB:
-        $http.delete('/users/usersList/' + id).then(function(response) {
-            refresh();
-        });
-    };
+    // $scope.remove = function(id) {
+    //     // REMOVE USER FROM DB:
+    //     $http.delete('/users/usersList/' + id).then(function(response) {
+    //         refresh();
+    //     });
+    // };
 
     $scope.removeSelected = function() {
         // REMOVE USER FROM DB:
@@ -162,16 +162,16 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
         $scope.idNumber = "";
         $scope.email = "";
         $scope.phoneNumber = "";
-        $scope.selectedRoleValue = "";
-        $scope.selectedStatusValue = "";
-        $scope.selectedPriorityValue = "";
-        $scope.selectedMinShifts = "";
+        $scope.selectedRoleValue = "Guard";
+        $scope.selectedStatusValue = "active";
+        $scope.selectedPriorityValue = 1;
+        $scope.selectedMinShifts = 1;
     }
 
-    // function isSelected(selectedNumber) {
-    //     if (selectedButton == selectedNumber)
-    //         return true;
-    //     else
-    //         return false;
-    // }
+    function isSelected(selectedNumber) {
+        if (selectedButton == selectedNumber)
+            return true;
+        else
+            return false;
+    }
 }]);
