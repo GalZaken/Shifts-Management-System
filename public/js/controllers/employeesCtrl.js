@@ -88,10 +88,10 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
             $scope.idNumber = user.idNumber;
             $scope.email = user.email;
             $scope.phoneNumber = user.phoneNumber;
-            $scope.selectedRoleValue = user.selectedRoleValue;
-            $scope.selectedStatusValue = user.selectedStatusValue;
-            $scope.selectedPriorityValue = user.selectedPriorityValue;
-            $scope.selectedMinShiftsValue = user.selectedMinShiftsValue;
+            $scope.selectedRoleValue = user.role;
+            $scope.selectedStatusValue = user.status;
+            $scope.selectedPriorityValue = user.priority;
+            $scope.selectedMinShiftsValue = user.minShifts;
         });
 
         console.log($scope.user);
@@ -165,7 +165,7 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
         $scope.selectedRoleValue = "Guard";
         $scope.selectedStatusValue = "active";
         $scope.selectedPriorityValue = 1;
-        $scope.selectedMinShifts = 1;
+        $scope.selectedMinShiftsValue = 1;
     }
 
     function isSelected(selectedNumber) {

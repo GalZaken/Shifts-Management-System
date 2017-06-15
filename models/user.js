@@ -74,8 +74,8 @@ module.exports.createAdminUser = function() {
         phoneNumber: 'none',
         role: 'Admin',
         status: 'inactive',
-        priority: 'none',
-        minShifts: 'none',
+        priority: '1',
+        minShifts: '1',
         isAdmin: true,
         userShifts: {}
     });
