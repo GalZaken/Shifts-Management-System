@@ -47,7 +47,9 @@
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<%= username %>&nbsp;&nbsp;<strong class="caret"></strong></a>
               <ul class="dropdown-menu pull-right">
                 <li><a href="/profile"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;פרופיל</a></li>
-                <!--<li><a href="/settings"><span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;הגדרות</a></li>-->
+                  <%if (isAdmin) { %>
+                  <li><a href="/settings"><span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;הגדרות</a></li>
+                  <% } %>
                 <li class="divider hidden-xs"></li>
                 <li><a href="/logout"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;התנתק</a></li>
               </ul>
@@ -86,6 +88,7 @@
 <!-- Controllers: -->
 <script src="js/controllers/homeCtrl.js"></script>
 <script src="js/controllers/profileCtrl.js"></script>
+<script src="js/controllers/settingsCtrl.js"></script>
 <script src="js/controllers/scheduleCtrl.js"></script>
 <script src="js/controllers/employeesCtrl.js"></script>
 

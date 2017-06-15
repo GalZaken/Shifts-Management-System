@@ -1,3 +1,172 @@
-<div>
-    <h1>SETTINGS</h1>
+<div class="container" dir="rtl">
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#position-modal" ng-click="setModalTitle(1)">הוספת עמדה</button>
+    <br>
+    <br>
+    <br>
+
+    <!-- New Employee Modal -->
+    <div id="position-modal" class="modal fade" role="dialog">
+        <!-- Modal Dialog -->
+        <div class="modal-dialog">
+            <!-- Modal Content -->
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div class="col-md-6">
+                        <button type="button" class="close pull-left" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="modal-title">
+                            {{ modalTitle }}
+                        </h3>
+                    </div>
+                </div>
+                <!-- End of Modal Header -->
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <fieldset class="form-right">
+                            <!-- Personal Details: -->
+
+                            <!-- position name input-->
+                            <div class="form-group">
+                                <div class="col-md-2">&nbsp;</div>
+                                <div class="col-md-5">
+                                    <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-model="positionName" autofocus required>
+                                </div>
+                                <label class="col-md-3 control-label" for="textinput">
+                                    <span class="required-label">*&nbsp;</span>שם העמדה:</label>
+                                <div class="col-md-2">&nbsp;</div>
+                            </div>
+
+                            <!-- Permissions:-->
+                            <br>
+                            <!-- Select In Morning -->
+                            <div class="form-group">
+                                <div class="col-md-2">&nbsp;</div>
+                                <div class="col-md-5">
+                                    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedInMorningValue" required>
+                                        <option value="1">כן</option>
+                                        <option value="0">לא</option>
+                                    </select>
+                                </div>
+                                <label class="col-md-3 control-label" for="selectbasic">
+                                    <span class="required-label">*&nbsp;</span>משמרת בוקר</label>
+                                <div class="col-md-2">&nbsp;</div>
+                            </div>
+
+                            <!-- Select In Evening -->
+                            <div class="form-group">
+                                <div class="col-md-2">&nbsp;</div>
+                                <div class="col-md-5">
+                                    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedInEveningValue" required>
+                                        <option value="1">כן</option>
+                                        <option value="0">לא</option>
+                                    </select>
+                                </div>
+                                <label class="col-md-3 control-label" for="selectbasic">
+                                    <span class="required-label">*&nbsp;</span>משמרת ערב</label>
+                                <div class="col-md-2">&nbsp;</div>
+                            </div>
+
+                            <!-- Select Iמn Night -->
+                            <div class="form-group">
+                                <div class="col-md-2">&nbsp;</div>
+                                <div class="col-md-5">
+                                    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedInNightValue" required>
+                                        <option value="1">כן</option>
+                                        <option value="0">לא</option>
+                                    </select>
+                                </div>
+                                <label class="col-md-3 control-label" for="selectbasic">
+                                    <span class="required-label">*&nbsp;</span>משמרת לילה</label>
+                                <div class="col-md-2">&nbsp;</div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <!-- End of Modal Body -->
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <!-- Button -->
+                    <div class="form-group">
+                        <!-- <label class="col-md-5 control-label" for="singlebutton"></label> -->
+                        <div class="col-md-5">&nbsp;</div>
+                        <div class="col-md-2">
+                            <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-show="modalStatus == 1" ng-click="addUser()" data-dismiss="modal">הוסף עמדה</button>
+                            <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-show="modalStatus == 2" ng-click="update(user._id)" data-dismiss="modal">ערוך</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Modal Footer -->
+            </div>
+            <!-- End of Modal Content -->
+        </div>
+        <!-- End of Modal Dialog -->
+    </div>
+    <!-- End of New Employee Modal -->
+
+    <!-- TABLE OF EMPLYEES: -->
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>שם העמדה</th>
+            <th>משמרות</th>
+            <th>אפשרויות</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="position in positionsList">
+            <td>{{ position.positionName }}</td>
+            <td>
+                <span ng-if="position.inMorning == 1">בוקר</span>
+                <span ng-if="position.inEvening == 1">ערב</span>
+                <span ng-if="position.inNight == 1">לילה</span>
+            </td>
+            <td>{{user.phoneNumber}}</td>
+            <td>{{user.email}}</td>
+
+            <td class="icon-color">
+                <small class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#position-modal" ng-click="edit(position._id)"></small>&nbsp;
+                <small class="glyphicon glyphicon-remove-circle" data-toggle="modal" data-target="#confirmModal" ng-click="selectPositionID(position._id)"></small>&nbsp;
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Confirm Delete Modal -->
+    <div id="confirmModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div class="col-md-6">
+                        <button type="button" class="close pull-left" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="modal-title">
+                            {{ modalTitle }}
+                        </h3>
+                    </div>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="comment">אתה בטוח שברצונך למחוק את המשתמש?</label>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="removeSelected()">אישור</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">ביטול</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,7 +1,7 @@
 exports.index = function(req, res) {
 
     if (req.user) {
-        res.render('index', { username: req.user.username });
+        res.render('index', { username: req.user.username, isAdmin: req.user.isAdmin });
     }
 }
 

@@ -168,10 +168,10 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
         $scope.selectedMinShifts = "";
     }
 
-    function isSelected(selectedNumber) {
-        if (selectedButton == selectedNumber)
-            return true;
-        else
-            return false;
-    }
+    // function isSelected(selectedNumber) {
+    //     if (selectedButton == selectedNumber)
+    //         return true;
+    //     else
+    //         return false;
+    // }
 }]);

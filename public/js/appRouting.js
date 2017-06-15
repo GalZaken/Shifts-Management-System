@@ -1,6 +1,7 @@
 angular.module('ShiftsManagerApp', ['ngRoute'])
 /* ROUTE Configuration */
     .config(function ($routeProvider, $locationProvider) {
+
         $routeProvider
             .when('/', {
                 controller: 'homeCtrl',
