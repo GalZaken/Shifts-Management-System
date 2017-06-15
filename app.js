@@ -16,6 +16,7 @@ var routes = require('./routes/routes');
 var users = require('./routes/users');
 var comment = require('./routes/comment');
 var positions = require('./routes/positions');
+var schedules = require('./routes/schedules');
 
 var databaseConfiguration = require('./config/databaseConfiguration.js');
 mongoose.connect(databaseConfiguration.dbURL, function (error) {
@@ -66,6 +67,7 @@ app.get('/', routes.ensureAuthenticated, routes.index);
 app.use('/users', users);
 app.use('/comment', comment);
 app.use('/positions', positions);
+app.use('/schedules', schedules);
 app.get('*', routes.index);
 
 // -------------------------------------------------------------------------------------
