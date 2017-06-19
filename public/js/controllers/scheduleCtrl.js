@@ -7,6 +7,9 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
     $http.get('users/currentUser').success(function(response) {
         $scope.currentUser = response;
     }).then(function(response) {
+        if ($scope.currentUser.isAdmin)
+            return;
+
         $scope.userShifts = new Array();
         $scope.userShifts.push($scope.currentUser.userShifts.morning);
         $scope.userShifts.push($scope.currentUser.userShifts.evening);
@@ -74,7 +77,32 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
         }
     })
 
+    // Set Start And End Dates:
+    setCurrentDates();
 
+    // Get current schedule:
+    $http.get('schedules/dates/' + $scope.currentFirstDay + "/" + $scope.currentLastDay).success(function(response) {
+        $scope.currentSchedule = response;
+    }).then(function(response) {
+
+        console.log("Schedule start date: " + $scope.currentSchedule.startDate);
+        console.log("Schedule end date: " + $scope.currentSchedule.endDate);
+    });
+
+    function setCurrentDates() {
+        // Get startDate and endDate for the new schedule:
+        var currentDate = new Date(); // Get current date
+        var firstDayOfWeek = currentDate.getDate() - currentDate.getDay(); // First day is the day of the month - the day of the week
+        var lastDayOfWeek = firstDayOfWeek + 6; // Last day is the first day + 6
+
+        $scope.currentFirstDay = firstDayOfWeek;
+        $scope.currentLastDay = lastDayOfWeek;
+        $scope.currentMonth = currentDate.getMonth() + 1;
+        $scope.currentYear = currentDate.getFullYear();
+
+        $scope.currentStartDate = new Date(currentDate.setDate(firstDayOfWeek));
+        $scope.currentEndDate = new Date(currentDate.setDate(lastDayOfWeek));
+    }
 
     $scope.positions = new Array();
     $scope.positions.push({ positionName: "Pos1", guardsArray: ["Yossi"] });

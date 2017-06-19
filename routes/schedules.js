@@ -28,6 +28,53 @@ router.get('/:id', function(req, res) {
     });
 });
 
+// Get Schedule By Dates From DB:
+router.get('/dates/:currentFirstDay/:currentLastDay', function(req, res) {
+    console.log('INSIDE SCHEDULES ROUTER - Handling GET /schedules/:currentFirstDay:currentLastDay');
+
+    var currentFirstDay = req.params.currentFirstDay;
+    var currentLastDay = req.params.currentLastDay;
+
+    var currentDate = new Date(); // Get current date
+    var currentStartDate = new Date(currentDate.setDate(currentFirstDay)); // Date variable
+    var currentEndDate = new Date(currentDate.setDate(currentLastDay)); // Date variable
+
+    Schedule.getScheduleByDates(currentStartDate, currentEndDate, function(err, docs) {
+        if (err)
+            console.log('ERROR: Get schedule from schedules collection!');
+        else if (!docs) {
+            console.log("Current Date Schedule is not exist in DB -> Should be created!");
+            var newSchedule = new Schedule({
+                published: false,
+                startDate: currentStartDate,
+                endDate: currentEndDate,
+                morningShift: {
+                    positionsArray: []
+                },
+                eveningShift: {
+                    positionsArray: []
+                },
+                nightShift: {
+                    positionsArray: []
+                }
+            });
+            Schedule.createSchedule(newSchedule, function (err, docs) {
+                if (err)
+                    console.log('ERROR: Create schedule in schedules collection!');
+                else {
+                    console.log('New schedule has been created');
+                    res.status(200).json(docs);
+                }
+            });
+        }
+        else {
+            console.log("Schedule in DB -> response!");
+            console.log("DOCS: " + docs);
+            res.status(200).json(docs);
+        }
+    });
+});
+
 // Adding schedule to DB (schedules collection):
 router.post('/', function(req, res) {
     console.log('INSIDE SCHEDULES ROUTER - Handling POST /schedules/');
