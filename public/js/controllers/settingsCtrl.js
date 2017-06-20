@@ -90,7 +90,7 @@ angular.module('ShiftsManagerApp').controller('settingsCtrl', ['$scope', '$http'
 
         return {
             positionName: $scope.positionName,
-            shiftsArray: [],
+            shiftsArray: new Array(7),
             inMorning: $scope.selectedInMorningValue == 1,
             inEvening: $scope.selectedInEveningValue == 1,
             inNight: $scope.selectedInNightValue == 1

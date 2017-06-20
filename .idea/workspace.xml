@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ea3d9ad6-96c9-479a-917d-0c79dc915596" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/position.js" afterPath="$PROJECT_DIR$/models/position.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/scheduleCtrl.js" afterPath="$PROJECT_DIR$/public/js/controllers/scheduleCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/schedules.js" afterPath="$PROJECT_DIR$/routes/schedules.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/settingsCtrl.js" afterPath="$PROJECT_DIR$/public/js/controllers/settingsCtrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/partials/employees.ejs" afterPath="$PROJECT_DIR$/views/partials/employees.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/partials/schedule.ejs" afterPath="$PROJECT_DIR$/views/partials/schedule.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/partials/settings.ejs" afterPath="$PROJECT_DIR$/views/partials/settings.ejs" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="scheduleCtrl.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="scheduleCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/controllers/scheduleCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="219" column="85" lean-forward="true" selection-start-line="219" selection-start-column="85" selection-end-line="219" selection-end-column="85" />
+            <state relative-caret-position="131">
+              <caret line="216" column="0" lean-forward="true" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
               <folding>
                 <element signature="e#3126#4481#0" expanded="false" />
                 <element signature="e#4528#5876#0" expanded="false" />
@@ -62,7 +63,7 @@
       <file leaf-file-name="schedules.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/schedules.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
+            <state relative-caret-position="1047">
               <caret line="78" column="48" lean-forward="true" selection-start-line="78" selection-start-column="48" selection-end-line="78" selection-end-column="48" />
               <folding>
                 <element signature="n#!!block;n#initCurrentSchedule#0" expanded="false" />
@@ -72,11 +73,41 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="settingsCtrl.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/controllers/settingsCtrl.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="30" column="45" lean-forward="true" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="positions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/positions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
+            <state relative-caret-position="1782">
               <caret line="54" column="39" lean-forward="true" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/partials/settings.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="316">
+              <caret line="127" column="37" lean-forward="false" selection-start-line="127" selection-start-column="37" selection-end-line="127" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="employees.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/partials/employees.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="5" column="8" lean-forward="true" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -85,18 +116,18 @@
       <file leaf-file-name="position.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/position.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="11" column="76" lean-forward="true" selection-start-line="11" selection-start-column="76" selection-end-line="11" selection-end-column="76" />
+            <state relative-caret-position="165">
+              <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="schedule.ejs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="schedule.ejs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/partials/schedule.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1155">
-              <caret line="64" column="59" lean-forward="true" selection-start-line="64" selection-start-column="59" selection-end-line="64" selection-end-column="59" />
+            <state relative-caret-position="264">
+              <caret line="158" column="94" lean-forward="false" selection-start-line="158" selection-start-column="94" selection-end-line="158" selection-end-column="94" />
               <folding />
             </state>
           </provider>
@@ -169,21 +200,21 @@
         <option value="$PROJECT_DIR$/routes/routes.js" />
         <option value="$PROJECT_DIR$/models/user.js" />
         <option value="$PROJECT_DIR$/public/js/controllers/employeesCtrl.js" />
-        <option value="$PROJECT_DIR$/public/js/controllers/settingsCtrl.js" />
         <option value="$PROJECT_DIR$/routes/comment.js" />
         <option value="$PROJECT_DIR$/routes/users.js" />
-        <option value="$PROJECT_DIR$/views/partials/settings.ejs" />
         <option value="$PROJECT_DIR$/public/js/controllers/homeCtrl.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/views/partials/employees.ejs" />
         <option value="$PROJECT_DIR$/public/css/custom/schedule.css" />
-        <option value="$PROJECT_DIR$/views/partials/schedule.ejs" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/models/schedule.js" />
         <option value="$PROJECT_DIR$/routes/schedules.js" />
-        <option value="$PROJECT_DIR$/models/position.js" />
         <option value="$PROJECT_DIR$/public/js/controllers/scheduleCtrl.js" />
         <option value="$PROJECT_DIR$/routes/positions.js" />
+        <option value="$PROJECT_DIR$/public/js/controllers/settingsCtrl.js" />
+        <option value="$PROJECT_DIR$/models/position.js" />
+        <option value="$PROJECT_DIR$/views/partials/employees.ejs" />
+        <option value="$PROJECT_DIR$/views/partials/settings.ejs" />
+        <option value="$PROJECT_DIR$/views/partials/schedule.ejs" />
       </list>
     </option>
   </component>
@@ -877,12 +908,12 @@
       <workItem from="1497448420553" duration="164000" />
       <workItem from="1497453278735" duration="8485000" />
       <workItem from="1497470034360" duration="37196000" />
-      <workItem from="1497864051138" duration="68280000" />
+      <workItem from="1497864051138" duration="69005000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="215108000" />
+    <option name="totallyTimeSpent" value="215833000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="2586" height="1386" extended-state="6" />
@@ -1107,14 +1138,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/settings.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="133" column="0" lean-forward="true" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/comment.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -1147,26 +1170,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/settingsCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-41">
           <caret line="14" column="20" lean-forward="true" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/employees.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="264" column="14" lean-forward="true" selection-start-line="264" selection-start-column="14" selection-end-line="264" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -1211,33 +1218,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/schedule.ejs">
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/scheduleCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1155">
-          <caret line="64" column="59" lean-forward="true" selection-start-line="64" selection-start-column="59" selection-end-line="64" selection-end-column="59" />
+        <state relative-caret-position="131">
+          <caret line="216" column="0" lean-forward="true" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
+          <folding>
+            <element signature="e#3126#4481#0" expanded="false" />
+            <element signature="e#4528#5876#0" expanded="false" />
+            <element signature="e#5913#6407#0" expanded="false" />
+            <element signature="e#6447#6878#0" expanded="false" />
+            <element signature="e#6913#7276#0" expanded="false" />
+            <element signature="e#7336#7965#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/positions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1782">
+          <caret line="54" column="39" lean-forward="true" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/position.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="76" lean-forward="true" selection-start-line="11" selection-start-column="76" selection-end-line="11" selection-end-column="76" />
+        <state relative-caret-position="165">
+          <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/positions.js">
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/settingsCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="54" column="39" lean-forward="true" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
+        <state relative-caret-position="255">
+          <caret line="30" column="45" lean-forward="true" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/employees.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="5" column="8" lean-forward="true" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/settings.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="127" column="37" lean-forward="false" selection-start-line="127" selection-start-column="37" selection-end-line="127" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/schedules.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
+        <state relative-caret-position="1047">
           <caret line="78" column="48" lean-forward="true" selection-start-line="78" selection-start-column="48" selection-end-line="78" selection-end-column="48" />
           <folding>
             <element signature="n#!!block;n#initCurrentSchedule#0" expanded="false" />
@@ -1254,18 +1292,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/scheduleCtrl.js">
+    <entry file="file://$PROJECT_DIR$/views/partials/schedule.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="219" column="85" lean-forward="true" selection-start-line="219" selection-start-column="85" selection-end-line="219" selection-end-column="85" />
-          <folding>
-            <element signature="e#3126#4481#0" expanded="false" />
-            <element signature="e#4528#5876#0" expanded="false" />
-            <element signature="e#5913#6407#0" expanded="false" />
-            <element signature="e#6447#6878#0" expanded="false" />
-            <element signature="e#6913#7276#0" expanded="false" />
-            <element signature="e#7336#7965#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="264">
+          <caret line="158" column="94" lean-forward="false" selection-start-line="158" selection-start-column="94" selection-end-line="158" selection-end-column="94" />
+          <folding />
         </state>
       </provider>
     </entry>

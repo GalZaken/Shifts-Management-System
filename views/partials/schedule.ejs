@@ -156,6 +156,7 @@
         <br>
 
         <!-- Button for triggering set shifts algorithm: -->
-        <button type="button" class="btn btn-info btn-lg" ng-click="setShifts()">קבע סידור עבודה</button>
+        <button type="button" class="btn btn-info btn-lg" ng-click="setShifts()" ng-disabled="currentSchedule.published">קבע סידור עבודה</button>
+        <button type="button" class="btn btn-success btn-lg" ng-click="setPublish()">פרסם סידור עבודה</button>
     </div>
 </div>
