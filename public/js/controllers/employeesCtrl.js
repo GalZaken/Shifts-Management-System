@@ -138,15 +138,15 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
         var isAdmin = false;
         var userShifts = {
             morning: {
-                shiftName: "Morning",
+                shiftName: "בוקר",
                 shifts: [false, false, false, false, false, false, false]
             },
             evening: {
-                shiftName: "Evening",
+                shiftName: "ערב",
                 shifts: [false, false, false, false, false, false, false]
             },
             night: {
-                shiftName: "Night",
+                shiftName: "לילה",
                 shifts: [false, false, false, false, false, false, false]
             }
         };

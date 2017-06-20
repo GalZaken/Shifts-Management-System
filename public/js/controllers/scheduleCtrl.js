@@ -4,6 +4,8 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
 
     // --------------------- REGULAR USER: --------------------- //
 
+    setNextScheduleDaysArray();
+
     // GET THE USER SESSION:
     $scope.currentUser = {};
     $http.get('users/currentUser').success(function(response) {
@@ -16,6 +18,8 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
         $scope.userShifts.push($scope.currentUser.userShifts.morning);
         $scope.userShifts.push($scope.currentUser.userShifts.evening);
         $scope.userShifts.push($scope.currentUser.userShifts.night);
+
+        setNextScheduleDaysArray();
     });
 
     $scope.isAdmin = function() {
@@ -59,6 +63,34 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
             return false;
         else
             return true;
+    }
+
+    function setNextScheduleDaysArray() {
+
+        $scope.nextScheduleDaysArray = new Array(DAYS_IN_WEEK);
+
+        var currentDate = new Date();
+        var currentFirstDay = currentDate.getDate() - currentDate.getDay();
+
+        console.log("currentDate: " + currentDate);
+        console.log("currentFirstDay: " + currentFirstDay);
+
+        var nextStartDate = new Date(currentDate.setDate(currentFirstDay + DAYS_IN_WEEK));
+        var firstDayOfWeek = nextStartDate.getDate();
+
+        console.log("nextStartDate: " + nextStartDate);
+        console.log("firstDayOfWeek: " + firstDayOfWeek);
+
+        for (var i=0; i<DAYS_IN_WEEK; i++) {
+
+            var newDate = new Date(nextStartDate.setDate(firstDayOfWeek + i));
+            var day = newDate.getDate();
+            var month = newDate.getMonth() + 1;
+            var year = newDate.getFullYear();
+
+            // console.log("Day " + (i+1) + ": " + day + "." + month + "." + year);
+            $scope.nextScheduleDaysArray[i] = (day + "." + month + "." + year);
+        }
     }
     // --------------------- END OF REGULAR USER: --------------------- //
 
@@ -216,7 +248,7 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
         // Update current schedule in DB:
         $http.put('/schedules/' + $scope.currentSchedule._id, $scope.currentSchedule).then(function(response) {
         });
-    }
+    } // Need to complete Algorithm
 
     function setCurrentWeekDates() {
 
@@ -269,7 +301,7 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
             var month = newDate.getMonth() + 1;
             var year = newDate.getFullYear();
 
-            console.log("Day " + (i+1) + ": " + day + "." + month + "." + year);
+            // console.log("Day " + (i+1) + ": " + day + "." + month + "." + year);
             $scope.currentScheduleDaysArray[i] = (day + "." + month + "." + year);
         }
     }

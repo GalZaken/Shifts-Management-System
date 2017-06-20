@@ -28,7 +28,7 @@
     <!-- END OF FIRST RAW -->
 
     <!-- SECONED ROW FOR CURRENT SHIFTS -->
-    <div class="row splliter">
+    <div class="row splliter" ng-show="!isAdmin()">
         <div class="panel panel-success">
             <div class="panel-heading">
                 <h3 class="panel-title">סידור לשבוע נוכחי</h3>
@@ -82,7 +82,7 @@
     <!-- END OF SECONED ROW -->
 
     <!-- THIRD ROW FOR NEXT WEEK SHIFTS -->
-    <div class="row splliter">
+    <div class="row splliter" ng-show="!isAdmin()">
         <div class="panel panel-warning">
             <div class="panel-heading">
                 <h3 class="panel-title">סידור לשבוע הבא</h3>

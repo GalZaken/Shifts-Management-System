@@ -5,18 +5,21 @@
 
     <!-- Div For Regular User: -->
     <div ng-show="!isAdmin()">
+
+        <div class="dates"> {{ nextScheduleDaysArray[6] }} - {{ nextScheduleDaysArray[0] }} </div>
+
         <!-- Shifts Table For Regular User: -->
         <table class="table table-hover">
             <thead>
             <tr>
                 <th>משמרות</th>
-                <th>יום ראשון</th>
-                <th>יום שני</th>
-                <th>יום שלישי</th>
-                <th>יום רביעי</th>
-                <th>יום חמישי</th>
-                <th>יום שישי</th>
-                <th>יום שבת</th>
+                <td>יום ראשון<br>{{ nextScheduleDaysArray[0] }}</td>
+                <td>יום שני<br>{{ nextScheduleDaysArray[1] }}</td>
+                <td>יום שלישי<br>{{ nextScheduleDaysArray[2] }}</td>
+                <td>יום רביעי<br>{{ nextScheduleDaysArray[3] }}</td>
+                <td>יום חמישי<br>{{ nextScheduleDaysArray[4] }}</td>
+                <td>יום שישי<br>{{ nextScheduleDaysArray[5] }}</td>
+                <td>יום שבת<br>{{ nextScheduleDaysArray[6] }}</td>
             </tr>
             </thead>
             <tbody>
@@ -68,7 +71,7 @@
     <div ng-show="isAdmin()">
         <!-- Date:-->
         <div class="arrow-right" title="Previous Week" ng-click="showPreviousWeekSchedule()"></div>
-        <div class="dates"> {{ currentScheduleDaysArray[0] }} - {{ currentScheduleDaysArray[6] }} </div>
+        <div class="dates"> {{ currentScheduleDaysArray[6] }} - {{ currentScheduleDaysArray[0] }} </div>
         <div class="arrow-left" title="Next Week" ng-click="showNextWeekSchedule()"></div>
 
 
