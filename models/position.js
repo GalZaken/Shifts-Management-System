@@ -34,3 +34,19 @@ module.exports.removePositionById = function(id, callback) {
 module.exports.updatePositionById = function(id, updatePosition, callback) {
     Position.findByIdAndUpdate(id, updatePosition, callback);
 }
+
+module.exports.getPositionsArrayOfMorningShift = function(callback) {
+    var query = { inMorning: true };
+    Position.find(query, callback);
+}
+
+module.exports.getPositionsArrayOfEveningShift = function(callback) {
+    var query = { inEvening: true };
+    Position.find(query, callback);
+}
+
+module.exports.getPositionsArrayOfNightShift = function(callback) {
+    var query = { inNight: true };
+    Position.find(query, callback);
+}
+

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var Schedule = require('../models/schedule');
+var Position = require('../models/position');
 
 // Get Schedule From DB:
 router.get('/schedulesList', function(req, res) {
@@ -77,7 +78,7 @@ router.put('/:id', function(req, res) {
     var id = req.params.id;
     var updateSchedule = new Schedule(req.body);
 
-    Schedule.updatePositionById(id, updateSchedule, function(err, docs) {
+    Schedule.updateScheduleById(id, updateSchedule, function(err, docs) {
         if (err)
             console.log('ERROR: Update schedule in schedules collection!');
         else
@@ -102,6 +103,10 @@ function initCurrentSchedule(req, res, next) {
         else if (!docs) {
             console.log("Current dates schedule doesn't exist in schedules collection!");
             console.log("Creating current schedule...");
+
+            var mor = Position.getPositionsArrayOfMorningShift();
+            console.log("POSITIONS ARRAY OF MORNING SHIFTS: ");
+
 
             var currentSchedule = new Schedule({
                 published: false,

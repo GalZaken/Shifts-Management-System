@@ -80,8 +80,75 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
     })
 
     // Init schedule:
+    $scope.currentSchedule = {};
+    $scope.positionsArray = [];
+    $scope.morningShiftPositionsArray = [];
+    $scope.eveningShiftPositionsArray = [];
+    $scope.nightShiftPositionsArray = [];
+
     setCurrentWeekDates();
     getCurrentWeekSchedule();
+
+    $scope.showPreviousWeekSchedule = function () {
+
+        var currentWeekStartDate = new Date($scope.currentSchedule.startDateString);
+        var currentWeekEndDate = new Date($scope.currentSchedule.endDateString);
+
+        var prevWeekFirstDay = currentWeekStartDate.getDate() - DAYS_IN_WEEK; // First day of previous week.
+        var prevWeekLastDay = currentWeekEndDate.getDate() - DAYS_IN_WEEK; // Last day of previous week.
+
+        var prevWeekStartDate = new Date(currentWeekStartDate.setDate(prevWeekFirstDay));
+        var prevWeekEndDate = new Date(currentWeekEndDate.setDate(prevWeekLastDay));
+
+        // console.log("prevWeekStartDate: " + prevWeekStartDate);
+        // console.log("prevWeekEndDate: " + prevWeekEndDate);
+
+        var prevWeekStartDateString = getStringDate(prevWeekStartDate);
+        var prevWeekEndDateString = getStringDate(prevWeekEndDate);
+
+        // console.log("prevWeekStartDateString: " + prevWeekStartDateString);
+        // console.log("prevWeekEndDateString: " + prevWeekEndDateString);
+
+        $http.get('schedules/schedule/' + prevWeekStartDateString + "/" + prevWeekEndDateString).success(function(response) {
+            if (response) {
+                $scope.currentSchedule = response;
+                setCurrentScheduleDaysArray($scope.currentSchedule.startDateString);
+            }
+        });
+
+        setCurrentSchedulePositionsArrays();
+    }
+
+    $scope.showNextWeekSchedule = function() {
+
+        var currentWeekStartDate = new Date($scope.currentSchedule.startDateString);
+        var currentWeekEndDate = new Date($scope.currentSchedule.endDateString);
+
+        var nextWeekFirstDay = currentWeekStartDate.getDate() + DAYS_IN_WEEK; // First day of next week.
+        var nextWeekLastDay = currentWeekEndDate.getDate() + DAYS_IN_WEEK; // Last day of next week.
+
+        var nextWeekStartDate = new Date(currentWeekStartDate.setDate(nextWeekFirstDay));
+        var nextWeekEndDate = new Date(currentWeekEndDate.setDate(nextWeekLastDay));
+
+        // console.log("nextWeekStartDate: " + nextWeekStartDate);
+        // console.log("nextWeekEndDate: " + nextWeekEndDate);
+
+        var nextWeekStartDateString = getStringDate(nextWeekStartDate);
+        var nextWeekEndDateString = getStringDate(nextWeekEndDate);
+
+        // console.log("nextWeekStartDateString: " + nextWeekStartDateString);
+        // console.log("nextWeekEndDateString: " + nextWeekEndDateString);
+
+        $http.get('schedules/schedule/' + nextWeekStartDateString + "/" + nextWeekEndDateString).success(function(response) {
+
+            if (response) {
+                $scope.currentSchedule = response;
+                setCurrentScheduleDaysArray($scope.currentSchedule.startDateString);
+            }
+        });
+
+        setCurrentSchedulePositionsArrays();
+    }
 
     function setCurrentWeekDates() {
 
@@ -93,6 +160,17 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
         $scope.currentWeekStartDateString = getStringDate($scope.currentWeekStartDate);
         $scope.currentWeekEndDate = new Date(now.setDate(currentWeekLastDay));
         $scope.currentWeekEndDateString = getStringDate($scope.currentWeekEndDate);
+    }
+
+    function getCurrentWeekSchedule() {
+
+        $http.get('schedules/currentSchedule/' + $scope.currentWeekStartDateString + "/" + $scope.currentWeekEndDateString).success(function(response) {
+            $scope.currentSchedule = response;
+        }).then(function(data) {
+            // Set current schedule days array:
+            setCurrentScheduleDaysArray($scope.currentSchedule.startDateString);
+            setCurrentSchedulePositionsArrays();
+        });
     }
 
     function getStringDate(date) {
@@ -108,16 +186,6 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
             mm = '0' + mm;
 
         return yyyy + '-' + mm + '-' + dd;
-    }
-
-    function getCurrentWeekSchedule() {
-
-        $http.get('schedules/currentSchedule/' + $scope.currentWeekStartDateString + "/" + $scope.currentWeekEndDateString).success(function(response) {
-            $scope.currentSchedule = response;
-        }).then(function(data) {
-            // Set current schedule days array:
-            setCurrentScheduleDaysArray($scope.currentSchedule.startDateString);
-        });
     }
 
     function setCurrentScheduleDaysArray(startDateString) {
@@ -138,63 +206,33 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
         }
     }
 
-    $scope.showPreviousWeekSchedule = function () {
+    function setCurrentSchedulePositionsArrays() {
 
-        var currentWeekStartDate = new Date($scope.currentSchedule.startDateString);
-        var currentWeekEndDate = new Date($scope.currentSchedule.endDateString);
+        if ($scope.currentSchedule.published) // Schedule is already published.
+            return;
 
-        var prevWeekFirstDay = currentWeekStartDate.getDate() - 7; // First day of previous week.
-        var prevWeekLastDay = currentWeekEndDate.getDate() - 7; // Last day of previous week.
+        $http.get('positions/positionsList/').success(function(response) {
+            $scope.positionsArray = response;
+        }).then(function(data) {
 
-        var prevWeekStartDate = new Date(currentWeekStartDate.setDate(prevWeekFirstDay));
-        var prevWeekEndDate = new Date(currentWeekEndDate.setDate(prevWeekLastDay));
+            for (var i=0; i<$scope.positionsArray.length; i++) {
+                if ($scope.positionsArray[i].inMorning)
+                    $scope.morningShiftPositionsArray.push($scope.positionsArray[i]);
 
-        // console.log("prevWeekStartDate: " + prevWeekStartDate);
-        // console.log("prevWeekEndDate: " + prevWeekEndDate);
+                if ($scope.positionsArray[i].inEvening)
+                    $scope.eveningShiftPositionsArray.push($scope.positionsArray[i]);
 
-        var prevWeekStartDateString = prevWeekStartDate.toISOString().substring(0, 10);
-        var prevWeekEndDateString = prevWeekEndDate.toISOString().substring(0, 10);
-
-        // console.log("prevWeekStartDateString: " + prevWeekStartDateString);
-        // console.log("prevWeekEndDateString: " + prevWeekEndDateString);
-
-        $http.get('schedules/schedule/' + prevWeekStartDateString + "/" + prevWeekEndDateString).success(function(response) {
-            if (!response)
-                return;
-            else {
-                $scope.currentSchedule = response;
-                setCurrentScheduleDaysArray($scope.currentSchedule.startDateString);
+                if ($scope.positionsArray[i].inNight)
+                    $scope.nightShiftPositionsArray.push($scope.positionsArray[i]);
             }
-        });
-    }
 
-    $scope.showNextWeekSchedule = function() {
+            $scope.currentSchedule.morningShift.positionsArray = $scope.morningShiftPositionsArray;
+            $scope.currentSchedule.eveningShift.positionsArray = $scope.eveningShiftPositionsArray;
+            $scope.currentSchedule.nightShift.positionsArray = $scope.nightShiftPositionsArray;
 
-        var currentWeekStartDate = new Date($scope.currentSchedule.startDateString);
-        var currentWeekEndDate = new Date($scope.currentSchedule.endDateString);
-
-        var nextWeekFirstDay = currentWeekStartDate.getDate() + 7; // First day of next week.
-        var nextWeekLastDay = currentWeekEndDate.getDate() + 7; // Last day of next week.
-
-        var nextWeekStartDate = new Date(currentWeekStartDate.setDate(nextWeekFirstDay));
-        var nextWeekEndDate = new Date(currentWeekEndDate.setDate(nextWeekLastDay));
-
-        // console.log("nextWeekStartDate: " + nextWeekStartDate);
-        // console.log("nextWeekEndDate: " + nextWeekEndDate);
-
-        var nextWeekStartDateString = nextWeekStartDate.toISOString().substring(0, 10);
-        var nextWeekEndDateString = nextWeekEndDate.toISOString().substring(0, 10);
-
-        // console.log("nextWeekStartDateString: " + nextWeekStartDateString);
-        // console.log("nextWeekEndDateString: " + nextWeekEndDateString);
-
-        $http.get('schedules/schedule/' + nextWeekStartDateString + "/" + nextWeekEndDateString).success(function(response) {
-            if (!response)
-                return;
-            else {
-                $scope.currentSchedule = response;
-                setCurrentScheduleDaysArray($scope.currentSchedule.startDateString);
-            }
+            // Update current schedule in DB:
+            $http.put('/schedules/' + $scope.currentSchedule._id, $scope.currentSchedule).then(function(response) {
+            });
         });
     }
 
