@@ -1,5 +1,7 @@
 angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http', function ($scope, $http) {
 
+    const DAYS_IN_WEEK = 7;
+
     // --------------------- REGULAR USER: --------------------- //
 
     // GET THE USER SESSION:
@@ -77,32 +79,68 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
         }
     })
 
-    // Set Start And End Dates:
-    setCurrentDates();
 
-    // Get current schedule:
-    $http.get('schedules/dates/' + $scope.currentFirstDay + "/" + $scope.currentLastDay).success(function(response) {
-        $scope.currentSchedule = response;
-    }).then(function(response) {
+    setCurrentWeekDates();
+    getCurrentWeekSchedule();
 
-        console.log("Schedule start date: " + $scope.currentSchedule.startDate);
-        console.log("Schedule end date: " + $scope.currentSchedule.endDate);
-    });
+    function setCurrentWeekDates() {
 
-    function setCurrentDates() {
-        // Get startDate and endDate for the new schedule:
-        var currentDate = new Date(); // Get current date
-        var firstDayOfWeek = currentDate.getDate() - currentDate.getDay(); // First day is the day of the month - the day of the week
-        var lastDayOfWeek = firstDayOfWeek + 6; // Last day is the first day + 6
+        var now = new Date();
+        var currentWeekFirstDay = now.getDate() - now.getDay();
+        var currentWeekLastDay = currentWeekFirstDay + 6;
 
-        $scope.currentFirstDay = firstDayOfWeek;
-        $scope.currentLastDay = lastDayOfWeek;
-        $scope.currentMonth = currentDate.getMonth() + 1;
-        $scope.currentYear = currentDate.getFullYear();
-
-        $scope.currentStartDate = new Date(currentDate.setDate(firstDayOfWeek));
-        $scope.currentEndDate = new Date(currentDate.setDate(lastDayOfWeek));
+        $scope.currentWeekStartDate = new Date(now.setDate(currentWeekFirstDay));
+        $scope.currentWeekStartDateString = getStringDate($scope.currentWeekStartDate);
+        $scope.currentWeekEndDate = new Date(now.setDate(currentWeekLastDay));
+        $scope.currentWeekEndDateString = getStringDate($scope.currentWeekEndDate);
     }
+
+    function getStringDate(date) {
+        // Function for returning String format "2015-03-25" (YYYY-MM-DD) of Data object:
+        var dd = date.getDate();
+        var mm = date.getMonth() + 1; //January is 0!
+
+        var yyyy = date.getFullYear();
+        if(dd < 10){
+            dd = '0' + dd;
+        }
+        if(mm < 10){
+            mm = '0' + mm;
+        }
+        return yyyy + '-' + mm + '-' + dd;
+    }
+
+    function getCurrentWeekSchedule() {
+
+        $http.get('schedules/' + $scope.currentWeekStartDateString + "/" + $scope.currentWeekEndDateString).success(function(response) {
+            $scope.currentSchedule = response;
+        }).then(function(data) {
+            // Set current schedule days array:
+            setCurrentScheduleDaysArray($scope.currentSchedule.startDateString);
+
+            // need to ask for next week schedule - if not exist then create:
+        });
+    }
+
+    function setCurrentScheduleDaysArray(startDateString) {
+
+        $scope.currentScheduleDaysArray = new Array(DAYS_IN_WEEK);
+        var currentStartDate = new Date(startDateString);
+        var firstDayOfWeek = currentStartDate.getDate();
+
+        for (var i=0; i<DAYS_IN_WEEK; i++) {
+
+            var newDate = new Date(currentStartDate.setDate(firstDayOfWeek + i));
+            var day = newDate.getDate();
+            var month = newDate.getMonth() + 1;
+            var year = newDate.getFullYear();
+
+            console.log("Day " + (i+1) + ": " + day + "." + month + "." + year);
+            $scope.currentScheduleDaysArray[i] = (day + "." + month + "." + year);
+        }
+    }
+
+    // --------------------------------------
 
     $scope.positions = new Array();
     $scope.positions.push({ positionName: "Pos1", guardsArray: ["Yossi"] });

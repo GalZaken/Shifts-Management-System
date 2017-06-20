@@ -34,3 +34,39 @@ thead td {
     font-weight: bold;
     vertical-align: middle;
 }
+
+.arrow-left {
+    display: inline-block;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    margin-right: 2%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+
+    border-right:20px solid #31b0d5;
+}
+
+.arrow-right {
+    display: inline-block;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    margin-right: 2%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+
+    border-left: 20px solid #31b0d5;
+}
+.dates {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 7%;
+    font-size: x-large;
+}
+

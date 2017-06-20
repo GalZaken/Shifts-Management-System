@@ -61,8 +61,17 @@
         <button type="button" class="btn btn-info btn-lg" ng-click="updateUserShifts()">הזן סידור עבודה</button>
     </div>
 
+
+    <!---------------------------------------------------->
+
     <!-- Div For Admin User: -->
     <div ng-show="isAdmin()">
+        <!-- Date:-->
+        <div class="arrow-right" title="Previous Week" ng-click="showPreviousWeekSchedule()"></div>
+        <div class="dates"> {{ currentScheduleDaysArray[0] }} - {{ currentScheduleDaysArray[6] }} </div>
+        <div class="arrow-left" title="Next Week" ng-click="showNextWeekSchedule()"></div>
+
+
         <!-- Shifts Table For Admin User: -->
         <div>
             <!-- Morning Shifts: -->
@@ -81,13 +90,13 @@
                         <thead align="center">
                         <tr>
                             <td>עמדה</td>
-                            <td>יום ראשון</td>
-                            <td>יום שני</td>
-                            <td>יום שלישי</td>
-                            <td>יום רביעי</td>
-                            <td>יום חמישי</td>
-                            <td>יום שישי</td>
-                            <td>יום שבת</td>
+                            <td>יום ראשון<br>{{ currentScheduleDaysArray[0] }}</td>
+                            <td>יום שני<br>{{ currentScheduleDaysArray[1] }}</td>
+                            <td>יום שלישי<br>{{ currentScheduleDaysArray[2] }}</td>
+                            <td>יום רביעי<br>{{ currentScheduleDaysArray[3] }}</td>
+                            <td>יום חמישי<br>{{ currentScheduleDaysArray[4] }}</td>
+                            <td>יום שישי<br>{{ currentScheduleDaysArray[5] }}</td>
+                            <td>יום שבת<br>{{ currentScheduleDaysArray[6] }}</td>
                         </tr>
                         </thead>
 

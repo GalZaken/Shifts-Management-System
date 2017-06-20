@@ -3,8 +3,13 @@ var mongoose = require('mongoose');
 var ScheduleSchema = new mongoose.Schema({
 
     published: Boolean,
+
+    startDateString: String,
     startDate: Date,
+
+    endDateString: String,
     endDate: Date,
+
     morningShift: {
         positionsArray: Array
     },
@@ -20,7 +25,7 @@ var Schedule = module.exports = mongoose.model('schedules', ScheduleSchema);
 
 // ------- SCHEDULE METHODS: ------- //
 
-module.exports.getScheduleList = function(callback) {
+module.exports.getScheduleCollection = function(callback) {
     var query = {};
     Schedule.find(query, callback);
 }
@@ -29,8 +34,8 @@ module.exports.getScheduleById = function(id, callback) {
     Schedule.findById(id, callback);
 }
 
-module.exports.getScheduleByDates = function(startDate, endDate, callback) {
-    var query = { startDate: startDate, endDate: endDate };
+module.exports.getScheduleByStringDates = function(startDateString, endDateString, callback) {
+    var query = { startDateString: startDateString, endDateString: endDateString };
     Schedule.findOne(query, callback);
 }
 
