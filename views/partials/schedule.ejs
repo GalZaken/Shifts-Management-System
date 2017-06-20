@@ -101,43 +101,43 @@
                         </thead>
 
                         <tbody>
-                        <tr ng-repeat="position in positions">
+                        <tr ng-repeat="position in currentSchedule.morningShift.positionsArray">
                             <td>{{ position.positionName }}</td>
-                            <td>
-                                <span class="guard-name">Kilgore Kones</span><br>
+                            <td ng-repeat="shift in position.shiftsArray track by $index">
+                                <span class="guard-name">{{ shift.guardsArray[0].username }}</span><br>
                                 <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>
                                 <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>
                             </td>
-                            <td>
-                                <span class="guard-name">Kilgore Kones</span><br>
-                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>
-                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>
-                            </td>
-                            <td>
-                                <span class="guard-name">Kilgore Kones</span><br>
-                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>
-                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>
-                            </td>
-                            <td>
-                                <span class="guard-name"></span><br>
-                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>
-                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>
-                            </td>
-                            <td>
-                                <span class="guard-name">Kilgore Kones</span><br>
-                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>
-                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>
-                            </td>
-                            <td>
-                                <span class="guard-name"></span><br>
-                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>
-                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>
-                            </td>
-                            <td>
-                                <span class="guard-name">Kilgore Kones</span><br>
-                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>
-                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>
-                            </td>
+                            <!--<td>-->
+                                <!--<span class="guard-name">Kilgore Kones</span><br>-->
+                                <!--<span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>-->
+                                <!--<span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>-->
+                            <!--</td>-->
+                            <!--<td>-->
+                                <!--<span class="guard-name">Kilgore Kones</span><br>-->
+                                <!--<span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>-->
+                                <!--<span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>-->
+                            <!--</td>-->
+                            <!--<td>-->
+                                <!--<span class="guard-name"></span><br>-->
+                                <!--<span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>-->
+                                <!--<span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>-->
+                            <!--</td>-->
+                            <!--<td>-->
+                                <!--<span class="guard-name">Kilgore Kones</span><br>-->
+                                <!--<span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>-->
+                                <!--<span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>-->
+                            <!--</td>-->
+                            <!--<td>-->
+                                <!--<span class="guard-name"></span><br>-->
+                                <!--<span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>-->
+                                <!--<span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>-->
+                            <!--</td>-->
+                            <!--<td>-->
+                                <!--<span class="guard-name">Kilgore Kones</span><br>-->
+                                <!--<span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>-->
+                                <!--<span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>-->
+                            <!--</td>-->
                         </tr>
                         </tbody>
                     </table>

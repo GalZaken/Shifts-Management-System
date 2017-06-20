@@ -81,6 +81,11 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
 
     // Init schedule:
     $scope.currentSchedule = {};
+
+    $scope.employeesList = [];
+    $scope.activeEmployeesList = [];
+    $scope.pendingEmployeesList = [];
+
     $scope.positionsArray = [];
     $scope.morningShiftPositionsArray = [];
     $scope.eveningShiftPositionsArray = [];
@@ -88,6 +93,7 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
 
     setCurrentWeekDates();
     getCurrentWeekSchedule();
+    getEmployeesList();
 
     $scope.showPreviousWeekSchedule = function () {
 
@@ -144,10 +150,34 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
             if (response) {
                 $scope.currentSchedule = response;
                 setCurrentScheduleDaysArray($scope.currentSchedule.startDateString);
+                setCurrentSchedulePositionsArrays();
             }
         });
+    }
 
-        setCurrentSchedulePositionsArrays();
+    $scope.setShifts = function() {
+
+        // Set Shifts By Priority:
+        // #1 Night:
+        // #2 Evening:
+        // #3 Morning:
+
+        // Morning Shift: Running on each position of morning shift:
+        for (var i=0; i<$scope.currentSchedule.morningShift.positionsArray.length; i++) {
+            // Running on each shift of position[i]:
+            for (var j=$scope.currentSchedule.morningShift.positionsArray[i].shiftsArray.length-1; j>=0; j--) {
+                var newShift = {
+                    guardsArray: new Array()
+                };
+
+                var randomIndex = Math.floor((Math.random() * ($scope.activeEmployeesList.length)));
+                console.log("RANDOM NUMBER: " + randomIndex);
+                console.log("User Selected: " + $scope.activeEmployeesList[randomIndex].username);
+
+                newShift.guardsArray.push($scope.activeEmployeesList[randomIndex]);
+                $scope.currentSchedule.morningShift.positionsArray[i].shiftsArray[j] = newShift;
+            }
+        }
     }
 
     function setCurrentWeekDates() {
@@ -211,6 +241,10 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
         if ($scope.currentSchedule.published) // Schedule is already published.
             return;
 
+        $scope.morningShiftPositionsArray = new Array();
+        $scope.eveningShiftPositionsArray = new Array();
+        $scope.nightShiftPositionsArray = new Array();
+
         $http.get('positions/positionsList/').success(function(response) {
             $scope.positionsArray = response;
         }).then(function(data) {
@@ -233,6 +267,28 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
             // Update current schedule in DB:
             $http.put('/schedules/' + $scope.currentSchedule._id, $scope.currentSchedule).then(function(response) {
             });
+        });
+    }
+
+    function getEmployeesList() {
+
+        $http.get('/users/usersList/').success(function(response) {
+            $scope.employeesList = response;
+        }).then(function(data) {
+
+            for (var i=0; i<$scope.employeesList.length; i++) {
+
+                if ($scope.employeesList[i].role != 'Admin') {
+                    // Collecting Active Employees:
+                    if ($scope.employeesList[i].status == 'active')
+                        $scope.activeEmployeesList.push($scope.employeesList[i]);
+                    // Collecting Pending Employees:
+                    else if ($scope.employeesList[i].status == 'pending')
+                        $scope.pendingEmployeesList.push($scope.employeesList[i]);
+                    else
+                        continue;
+                }
+            }
         });
     }
 
