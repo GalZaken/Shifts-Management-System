@@ -78,7 +78,7 @@
             <div class="panel panel-info">
                 <!-- Panel Heading: -->
                 <div class="panel-heading">
-                    <center><h3 class="panel-title">Morning</h3></center>
+                    <center><h3 class="panel-title">בוקר</h3></center>
                     <span class="pull-left clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
                 </div>
                 <!-- End of panel heading-->
@@ -108,36 +108,6 @@
                                 <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>
                                 <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>
                             </td>
-                            <!--<td>-->
-                                <!--<span class="guard-name">Kilgore Kones</span><br>-->
-                                <!--<span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>-->
-                                <!--<span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>-->
-                            <!--</td>-->
-                            <!--<td>-->
-                                <!--<span class="guard-name">Kilgore Kones</span><br>-->
-                                <!--<span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>-->
-                                <!--<span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>-->
-                            <!--</td>-->
-                            <!--<td>-->
-                                <!--<span class="guard-name"></span><br>-->
-                                <!--<span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>-->
-                                <!--<span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>-->
-                            <!--</td>-->
-                            <!--<td>-->
-                                <!--<span class="guard-name">Kilgore Kones</span><br>-->
-                                <!--<span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>-->
-                                <!--<span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>-->
-                            <!--</td>-->
-                            <!--<td>-->
-                                <!--<span class="guard-name"></span><br>-->
-                                <!--<span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>-->
-                                <!--<span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>-->
-                            <!--</td>-->
-                            <!--<td>-->
-                                <!--<span class="guard-name">Kilgore Kones</span><br>-->
-                                <!--<span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>-->
-                                <!--<span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>-->
-                            <!--</td>-->
                         </tr>
                         </tbody>
                     </table>
@@ -147,9 +117,86 @@
             <!-- End of Morning Shift-->
 
             <!-- Evening Shifts: -->
+            <div class="panel panel-info">
+                <!-- Panel Heading: -->
+                <div class="panel-heading">
+                    <center><h3 class="panel-title">ערב</h3></center>
+                    <span class="pull-left clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+                </div>
+                <!-- End of panel heading-->
 
+                <!-- Panel Body: -->
+                <div class="panel-body">
+                    <br>
+                    <table class="table table-hover admin-table" id="dev-table">
+                        <thead align="center">
+                        <tr>
+                            <td>עמדה</td>
+                            <td>יום ראשון<br>{{ currentScheduleDaysArray[0] }}</td>
+                            <td>יום שני<br>{{ currentScheduleDaysArray[1] }}</td>
+                            <td>יום שלישי<br>{{ currentScheduleDaysArray[2] }}</td>
+                            <td>יום רביעי<br>{{ currentScheduleDaysArray[3] }}</td>
+                            <td>יום חמישי<br>{{ currentScheduleDaysArray[4] }}</td>
+                            <td>יום שישי<br>{{ currentScheduleDaysArray[5] }}</td>
+                            <td>יום שבת<br>{{ currentScheduleDaysArray[6] }}</td>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr ng-repeat="position in currentSchedule.eveningShift.positionsArray">
+                            <td>{{ position.positionName }}</td>
+                            <td ng-repeat="shift in position.shiftsArray track by $index">
+                                <span class="guard-name">{{ shift.guardsArray[0].username }}</span><br>
+                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>
+                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- End of panel body -->
+            </div>
 
             <!-- Night Shifts: -->
+            <div class="panel panel-info">
+                <!-- Panel Heading: -->
+                <div class="panel-heading">
+                    <center><h3 class="panel-title">לילה</h3></center>
+                    <span class="pull-left clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+                </div>
+                <!-- End of panel heading-->
+
+                <!-- Panel Body: -->
+                <div class="panel-body">
+                    <br>
+                    <table class="table table-hover admin-table" id="dev-table">
+                        <thead align="center">
+                        <tr>
+                            <td>עמדה</td>
+                            <td>יום ראשון<br>{{ currentScheduleDaysArray[0] }}</td>
+                            <td>יום שני<br>{{ currentScheduleDaysArray[1] }}</td>
+                            <td>יום שלישי<br>{{ currentScheduleDaysArray[2] }}</td>
+                            <td>יום רביעי<br>{{ currentScheduleDaysArray[3] }}</td>
+                            <td>יום חמישי<br>{{ currentScheduleDaysArray[4] }}</td>
+                            <td>יום שישי<br>{{ currentScheduleDaysArray[5] }}</td>
+                            <td>יום שבת<br>{{ currentScheduleDaysArray[6] }}</td>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr ng-repeat="position in currentSchedule.nightShift.positionsArray">
+                            <td>{{ position.positionName }}</td>
+                            <td ng-repeat="shift in position.shiftsArray track by $index">
+                                <span class="guard-name">{{ shift.guardsArray[0].username }}</span><br>
+                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>
+                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- End of panel body -->
+            </div>
 
         </div>
         <br>

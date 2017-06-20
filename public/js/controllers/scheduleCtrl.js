@@ -162,6 +162,40 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
         // #2 Evening:
         // #3 Morning:
 
+        // Night Shift: Running on each position of night shift:
+        for (var i=0; i<$scope.currentSchedule.nightShift.positionsArray.length; i++) {
+            // Running on each shift of position[i]:
+            for (var j=$scope.currentSchedule.nightShift.positionsArray[i].shiftsArray.length-1; j>=0; j--) {
+                var newShift = {
+                    guardsArray: new Array()
+                };
+
+                var randomIndex = Math.floor((Math.random() * ($scope.activeEmployeesList.length)));
+                console.log("RANDOM NUMBER: " + randomIndex);
+                console.log("User Selected: " + $scope.activeEmployeesList[randomIndex].username);
+
+                newShift.guardsArray.push($scope.activeEmployeesList[randomIndex]);
+                $scope.currentSchedule.nightShift.positionsArray[i].shiftsArray[j] = newShift;
+            }
+        }
+
+        // Evening Shift: Running on each position of evening shift:
+        for (var i=0; i<$scope.currentSchedule.eveningShift.positionsArray.length; i++) {
+            // Running on each shift of position[i]:
+            for (var j=$scope.currentSchedule.eveningShift.positionsArray[i].shiftsArray.length-1; j>=0; j--) {
+                var newShift = {
+                    guardsArray: new Array()
+                };
+
+                var randomIndex = Math.floor((Math.random() * ($scope.activeEmployeesList.length)));
+                console.log("RANDOM NUMBER: " + randomIndex);
+                console.log("User Selected: " + $scope.activeEmployeesList[randomIndex].username);
+
+                newShift.guardsArray.push($scope.activeEmployeesList[randomIndex]);
+                $scope.currentSchedule.eveningShift.positionsArray[i].shiftsArray[j] = newShift;
+            }
+        }
+
         // Morning Shift: Running on each position of morning shift:
         for (var i=0; i<$scope.currentSchedule.morningShift.positionsArray.length; i++) {
             // Running on each shift of position[i]:
@@ -178,6 +212,10 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
                 $scope.currentSchedule.morningShift.positionsArray[i].shiftsArray[j] = newShift;
             }
         }
+
+        // Update current schedule in DB:
+        $http.put('/schedules/' + $scope.currentSchedule._id, $scope.currentSchedule).then(function(response) {
+        });
     }
 
     function setCurrentWeekDates() {
@@ -241,28 +279,47 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
         if ($scope.currentSchedule.published) // Schedule is already published.
             return;
 
-        $scope.morningShiftPositionsArray = new Array();
-        $scope.eveningShiftPositionsArray = new Array();
-        $scope.nightShiftPositionsArray = new Array();
+        var morningShiftPositionsArray = new Array();
+        var eveningShiftPositionsArray = new Array();
+        var nightShiftPositionsArray = new Array();
 
         $http.get('positions/positionsList/').success(function(response) {
             $scope.positionsArray = response;
         }).then(function(data) {
 
             for (var i=0; i<$scope.positionsArray.length; i++) {
+
                 if ($scope.positionsArray[i].inMorning)
-                    $scope.morningShiftPositionsArray.push($scope.positionsArray[i]);
+                    morningShiftPositionsArray.push(new Position({
+                        positionName: $scope.positionsArray[i].positionName,
+                        shiftsArray: $scope.positionsArray[i].shiftsArray,
+                        inMorning: $scope.positionsArray[i].inMorning,
+                        inEvening: $scope.positionsArray[i].inEvening,
+                        inNight: $scope.positionsArray[i].inNight
+                    }));
 
                 if ($scope.positionsArray[i].inEvening)
-                    $scope.eveningShiftPositionsArray.push($scope.positionsArray[i]);
+                    eveningShiftPositionsArray.push(new Position({
+                        positionName: $scope.positionsArray[i].positionName,
+                        shiftsArray: $scope.positionsArray[i].shiftsArray,
+                        inMorning: $scope.positionsArray[i].inMorning,
+                        inEvening: $scope.positionsArray[i].inEvening,
+                        inNight: $scope.positionsArray[i].inNight
+                    }));
 
                 if ($scope.positionsArray[i].inNight)
-                    $scope.nightShiftPositionsArray.push($scope.positionsArray[i]);
+                    nightShiftPositionsArray.push(new Position({
+                        positionName: $scope.positionsArray[i].positionName,
+                        shiftsArray: $scope.positionsArray[i].shiftsArray,
+                        inMorning: $scope.positionsArray[i].inMorning,
+                        inEvening: $scope.positionsArray[i].inEvening,
+                        inNight: $scope.positionsArray[i].inNight
+                    }));
             }
 
-            $scope.currentSchedule.morningShift.positionsArray = $scope.morningShiftPositionsArray;
-            $scope.currentSchedule.eveningShift.positionsArray = $scope.eveningShiftPositionsArray;
-            $scope.currentSchedule.nightShift.positionsArray = $scope.nightShiftPositionsArray;
+            $scope.currentSchedule.morningShift.positionsArray = morningShiftPositionsArray;
+            $scope.currentSchedule.eveningShift.positionsArray = eveningShiftPositionsArray;
+            $scope.currentSchedule.nightShift.positionsArray = nightShiftPositionsArray;
 
             // Update current schedule in DB:
             $http.put('/schedules/' + $scope.currentSchedule._id, $scope.currentSchedule).then(function(response) {
