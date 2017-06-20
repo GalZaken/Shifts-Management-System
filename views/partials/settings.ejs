@@ -3,7 +3,7 @@
     <br>
     <br>
 
-    <!-- New Employee Modal -->
+    <!-- New Position Modal -->
     <div id="position-modal" class="modal fade" role="dialog">
         <!-- Modal Dialog -->
         <div class="modal-dialog">
@@ -69,7 +69,7 @@
                                 <div class="col-md-2">&nbsp;</div>
                             </div>
 
-                            <!-- Select Iמn Night -->
+                            <!-- Select In Night -->
                             <div class="form-group">
                                 <div class="col-md-2">&nbsp;</div>
                                 <div class="col-md-5">
@@ -105,36 +105,103 @@
         </div>
         <!-- End of Modal Dialog -->
     </div>
-    <!-- End of New Employee Modal -->
+    <!-- End of New Position Modal -->
 
-    <!-- TABLE OF EMPLYEES: -->
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>שם העמדה</th>
-            <th>משמרות</th>
-            <th>אפשרויות</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="position in positionsList">
-            <td>{{ position.positionName }}</td>
-            <td>
-                <span ng-if="position.inMorning">בוקר, </span>
-                <span ng-if="position.inEvening">ערב, </span>
-                <span ng-if="position.inNight">לילה</span>
-            </td>
-            <td class="icon-color">
-                <small title="עריכה" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#position-modal" ng-click="edit(position._id)"></small>&nbsp;
-                <small title="מחיקה" class="glyphicon glyphicon-remove-circle" data-toggle="modal" data-target="#confirmModal" ng-click="selectPositionID(position._id)"></small>&nbsp;
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <!-- Priority Panel:-->
+        <div class="col-lg-4" id="priority">
+            <div class="panel panel-default">
+                <!-- Panel Heading: -->
+                <div class="panel-heading">
+                    <center><h3 class="panel-title">עדיפות משמרות</h3></center>
+                    <!--<span class="pull-left clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>-->
+                </div>
+                <!-- End of panel heading-->
+
+                <!-- Panel Body: -->
+                <div class="panel-body">
+                    <form class="form-horizontal">
+                        <fieldset class="form-right">
+                            <br>
+                            <!-- Select Morning Priority: -->
+                            <div class="form-group">
+                                <div class="col-md-1">&nbsp;</div>
+                                <div class="col-md-6">
+                                    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedMorningPriorityValue" required>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </div>
+                                <label class="col-md-4 control-label" for="selectbasic">משמרת בוקר</label>
+                                <div class="col-md-1">&nbsp;</div>
+                            </div>
+
+                            <!-- Select Evening Priority: -->
+                            <div class="form-group">
+                                <div class="col-md-1">&nbsp;</div>
+                                <div class="col-md-6">
+                                    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedEveningPriorityValue" required>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </div>
+                                <label class="col-md-4 control-label" for="selectbasic">משמרת ערב</label>
+                                <div class="col-md-1">&nbsp;</div>
+                            </div>
+
+                            <!-- Select Night Priority -->
+                            <div class="form-group">
+                                <div class="col-md-1">&nbsp;</div>
+                                <div class="col-md-6">
+                                    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="selectedNightPriorityValue" required>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </div>
+                                <label class="col-md-4 control-label" for="selectbasic">משמרת לילה</label>
+                                <div class="col-md-1">&nbsp;</div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <!-- End of panel body -->
+            </div>
+        </div>
+        <!-- End of priority panel -->
+
+        <!-- TABLE OF EMPLYEES: -->
+        <div class="col-lg-8">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>שם העמדה</th>
+                    <th>משמרות</th>
+                    <th>אפשרויות</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="position in positionsList">
+                    <td>{{ position.positionName }}</td>
+                    <td>
+                        <span ng-if="position.inMorning">בוקר, </span>
+                        <span ng-if="position.inEvening">ערב, </span>
+                        <span ng-if="position.inNight">לילה</span>
+                    </td>
+                    <td class="icon-color">
+                        <small title="עריכה" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#position-modal" ng-click="edit(position._id)"></small>&nbsp;
+                        <small title="מחיקה" class="glyphicon glyphicon-remove-circle" data-toggle="modal" data-target="#confirmModal" ng-click="selectPositionID(position._id)"></small>&nbsp;
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <!-- Trigger the modal with a button -->
     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#position-modal" ng-click="setModalTitle(1)">הוספת עמדה</button>
-
 
     <!-- Confirm Delete Modal -->
     <div id="confirmModal" class="modal fade" role="dialog">
