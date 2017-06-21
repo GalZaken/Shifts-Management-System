@@ -3,6 +3,7 @@ var chai = require('chai');
 var expect = chai.expect; // we are using the "expect" style of Chai
 var validation = require('./../validation/validator');
 
+// Running: node app in gitbash, then npm test in other gitbash
 
 describe('Server posts requests', function() {
 
