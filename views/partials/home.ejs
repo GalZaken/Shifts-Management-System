@@ -34,47 +34,46 @@
                 <h3 class="panel-title">סידור לשבוע נוכחי</h3>
             </div>
             <div class="panel-body">
-                <table class="schedule-table">
-                    <tr class="table-title">
-                        <th  class="panel-heading"></th><!-- Only one effects all!!-->
-                        <th>א'</th>
-                        <th>ב'</th>
-                        <th>ג'</th>
-                        <th>ד'</th>
-                        <th>ה'</th>
-                        <th>ו'</th>
-                        <th>ש'</th>
+                <br>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>משמרות</th>
+                        <td>יום ראשון<br>{{ currentWeekDaysArray[0] }}</td>
+                        <td>יום שני<br>{{ currentWeekDaysArray[1] }}</td>
+                        <td>יום שלישי<br>{{ currentWeekDaysArray[2] }}</td>
+                        <td>יום רביעי<br>{{ currentWeekDaysArray[3] }}</td>
+                        <td>יום חמישי<br>{{ currentWeekDaysArray[4] }}</td>
+                        <td>יום שישי<br>{{ currentWeekDaysArray[5] }}</td>
+                        <td>יום שבת<br>{{ currentWeekDaysArray[6] }}</td>
                     </tr>
-                    <tr class="table-schedule-area">
-                        <th  class="panel-heading">16:00 - 08:00 (בוקר)</th><!-- Only one effects all!!-->
-                        <td>16:00 - 8:00</td>
-                        <td>16:00 - 8:00</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>16:00 - 8:00</td>
-                        <td></td>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>  בוקר
+                            16:00 - 8:00
+                        </td>
+                        <td ng-repeat="shift in morningShift track by $index">
+                            {{ shift }}
+                        </td>
                     </tr>
-                    <tr class="table-schedule-area">
-                        <th  class="panel-heading">00:00 - 16:00 (ערב)</th><!-- Only one effects all!!-->
-                        <td></td>
-                        <td></td>
-                        <td>00:00 - 16:00</td>
-                        <td>00:00 - 16:00</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr>
+                        <td>  ערב
+                            16:00 - 8:00
+                        </td>
+                        <td ng-repeat="shift in eveningShift track by $index">
+                            {{ shift }}
+                        </td>
                     </tr>
-                    <tr class="table-schedule-area">
-                        <th  class="panel-heading">08:00 - 00:00 (לילה)</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>8:00 - 23:00</td>
+                    <tr>
+                        <td>  לילה
+                            8:00 - 23:00
+                        </td>
+                        <td ng-repeat="shift in morningShift track by $index">
+                            {{ shift }}
+                        </td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -87,8 +86,55 @@
             <div class="panel-heading">
                 <h3 class="panel-title">סידור לשבוע הבא</h3>
             </div>
-            <div class="panel-body">אין סידור לשבוע הבא !</div>
+            <div ng-show="!nextSchedule.published">
+                <div class="panel-body">אין סידור לשבוע הבא !</div>
+            </div>
+            <div ng-show="nextSchedule.published">
+                <br>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>משמרות</th>
+                        <td>יום ראשון<br>{{ nextWeekDaysArray[0] }}</td>
+                        <td>יום שני<br>{{ nextWeekDaysArray[1] }}</td>
+                        <td>יום שלישי<br>{{ nextWeekDaysArray[2] }}</td>
+                        <td>יום רביעי<br>{{ nextWeekDaysArray[3] }}</td>
+                        <td>יום חמישי<br>{{ nextWeekDaysArray[4] }}</td>
+                        <td>יום שישי<br>{{ nextWeekDaysArray[5] }}</td>
+                        <td>יום שבת<br>{{ nextWeekDaysArray[6] }}</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>  בוקר
+                            16:00 - 8:00
+                        </td>
+                        <td ng-repeat="shift in nextMorningShift track by $index">
+                            {{ shift }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>  ערב
+                            16:00 - 8:00
+                        </td>
+                        <td ng-repeat="shift in nextEveningShift track by $index">
+                            {{ shift }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>  לילה
+                            8:00 - 23:00
+                        </td>
+                        <td ng-repeat="shift in nextNightShift track by $index">
+                            {{ shift }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
+
     </div>
     <!-- END OF THIRD ROW -->
 

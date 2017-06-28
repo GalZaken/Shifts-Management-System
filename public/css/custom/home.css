@@ -25,9 +25,23 @@
 }
 
 .schedule-table{
-
+    text-align: center;
+    vertical-align: middle;
     width: 80%;
 }
 .table-title th , .table-schedule-area td{
     text-align: center;
+}
+.centerise {
+    text-align: center;
+}
+
+.admin-table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+thead td {
+    font-weight: bold;
+    vertical-align: middle;
 }
