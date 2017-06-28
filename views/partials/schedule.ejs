@@ -108,8 +108,8 @@
                             <td>{{ position.positionName }}</td>
                             <td ng-repeat="shift in position.shiftsArray track by $index">
                                 <span class="guard-name" ng-repeat="guard in shift.guardsArray track by $index">{{ guard.username }} <br></span><br>
-                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red" data-toggle="modal" data-target="#removeModal" ng-click="setSelected()"></i></span>
-                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green" data-toggle="modal" data-target="#addModal"  ng-click="setSelectedShift(2)"></i></span>
+                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red" data-toggle="modal" data-target="#removeModal" ng-click="setSelectedToRemove()"></i></span>
+                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green" data-toggle="modal" data-target="#addModal"  ng-click="setSelectedToAdd(1)"></i></span>
                             </td>
                         </tr>
                         </tbody>
@@ -150,8 +150,8 @@
                             <td>{{ position.positionName }}</td>
                             <td ng-repeat="shift in position.shiftsArray track by $index">
                                 <span class="guard-name" ng-repeat="guard in shift.guardsArray track by $index">{{ guard.username }} <br></span><br>
-                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red" data-toggle="modal" data-target="#removeModal" ng-click="setSelected()"></i></span>
-                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green" data-toggle="modal" data-target="#addModal"  ng-click="setSelectedShift(2)"></i></span>
+                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red" data-toggle="modal" data-target="#removeModal" ng-click="setSelectedToRemove()"></i></span>
+                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green" data-toggle="modal" data-target="#addModal"  ng-click="setSelectedToAdd(2)"></i></span>
                             </td>
                         </tr>
                         </tbody>
@@ -191,8 +191,8 @@
                             <td>{{ position.positionName }}</td>
                             <td ng-repeat="shift in position.shiftsArray track by $index">
                                 <span class="guard-name" ng-repeat="guard in shift.guardsArray track by $index">{{ guard.username }} <br></span><br>
-                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red" data-toggle="modal" data-target="#removeModal" ng-click="setSelected()"></i></span>
-                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green" data-toggle="modal" data-target="#addModal"  ng-click="setSelectedShift(3)"></i></span>
+                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red" data-toggle="modal" data-target="#removeModal" ng-click="setSelectedToRemove()"></i></span>
+                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green" data-toggle="modal" data-target="#addModal"  ng-click="setSelectedToAdd(3)"></i></span>
                             </td>
                         </tr>
                         </tbody>

@@ -128,13 +128,16 @@ angular.module('ShiftsManagerApp').controller('homeCtrl', ['$scope', '$http', fu
         return daysArray;
     }
 
-    function getCurrentSchedule(){
+    function getCurrentSchedule() {
         if($scope.currentUser.isAdmin)
             return;
 
         $http.get('schedules/currentSchedule/' + $scope.currentWeekStartDateString + "/" + $scope.currentWeekEndDateString).success(function(response) {
             $scope.currentSchedule = response;
         }).then(function(data) {
+
+            if (!$scope.currentSchedule.published)
+                return;
 
             $scope.morningShift = ["", "", "", "", "", "", ""];
             $scope.eveningShift = ["", "", "", "", "", "", ""];
@@ -199,7 +202,8 @@ angular.module('ShiftsManagerApp').controller('homeCtrl', ['$scope', '$http', fu
         $http.get('schedules/currentSchedule/' + $scope.nextWeekStartDateString + "/" + $scope.nextWeekEndDateString).success(function(response) {
             $scope.nextSchedule = response;
         }).then(function(data) {
-            $scope.nextSchedule.published;
+            if (!$scope.nextSchedule.published)
+                return;
 
             $scope.nextMorningShift = ["", "", "", "", "", "", ""];
             $scope.nextEveningShift = ["", "", "", "", "", "", ""];

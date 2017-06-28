@@ -132,6 +132,7 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
     setCurrentWeekDates();
     getCurrentWeekSchedule();
     getEmployeesList();
+    getAdminConfiguration();
 
     $scope.showPreviousWeekSchedule = function () {
 
@@ -194,8 +195,6 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
     }
 
     $scope.setShifts = function() {
-        // setRandomShifts();
-        // return;
 
         var availableWorkersPerDaysArray = new Array(DAYS_IN_WEEK);
         for (var i=0; i<DAYS_IN_WEEK; i++) {
@@ -280,118 +279,125 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
         //     console.log(str);
         // }
 
-        // Set Shifts By Priority:
-        // #1 Night:
-        // #2 Evening:
-        // #3 Morning:
-
         // Algorithm:
 
-        // Night Shift: Running on each position of night shift:
-        for (var i=0; i<$scope.currentSchedule.nightShift.positionsArray.length; i++) {
-            // Running on each shift of position[i]:
-            for (var j=DAYS_IN_WEEK-1; j>=0; j--) {
+        for (var indexOfPriority=0; indexOfPriority<3; indexOfPriority++) {
 
-                var newShift = { guardsArray: new Array() };
-                console.log("Day " + j + ":");
+            if ($scope.priorityArray[indexOfPriority].shiftName == "Night") {
+                console.log("in Night");
+                // Night Shift: Running on each position of night shift:
+                for (var i=0; i<$scope.currentSchedule.nightShift.positionsArray.length; i++) {
+                    // Running on each shift of position[i]:
+                    for (var j=DAYS_IN_WEEK-1; j>=0; j--) {
 
-                var currentDayAvailableWorkersObj = availableWorkersPerDaysArray[j];
-                for (var k=0; k<currentDayAvailableWorkersObj.availableWorkersInDay.length; k++) {
+                        var newShift = { guardsArray: new Array() };
+                        console.log("Day " + j + ":");
 
-                    var currentAvailableWorker = currentDayAvailableWorkersObj.availableWorkersInDay[k];
-                    var availableWorkersToNightArray = currentDayAvailableWorkersObj.availableToWorkInNight;
+                        var currentDayAvailableWorkersObj = availableWorkersPerDaysArray[j];
+                        for (var k=0; k<currentDayAvailableWorkersObj.availableWorkersInDay.length; k++) {
 
-                    if (availableWorkersToNightArray.length == 0) {
-                        console.log("There are no available workers for this shift!");
-                        continue;
+                            var currentAvailableWorker = currentDayAvailableWorkersObj.availableWorkersInDay[k];
+                            var availableWorkersToNightArray = currentDayAvailableWorkersObj.availableToWorkInNight;
+
+                            if (availableWorkersToNightArray.length == 0) {
+                                console.log("There are no available workers for this shift!");
+                                continue;
+                            }
+
+                            console.log("Checking if worker " + currentAvailableWorker.username + " is available to work in NIGHT:");
+                            if (isAvailableToWork(currentAvailableWorker, availableWorkersToNightArray)) {
+                                newShift.guardsArray.push(currentAvailableWorker);
+
+                                console.log("Selected to shift: " + currentAvailableWorker.username);
+                                currentDayAvailableWorkersObj.availableWorkersInDay.splice(k, 1);
+                                break;
+                            }
+
+                            console.log("Checking for next available worker...");
+                        }
+
+                        // Add the shift to schedule:
+                        $scope.currentSchedule.nightShift.positionsArray[i].shiftsArray[j] = newShift;
                     }
-
-                    console.log("Checking if worker " + currentAvailableWorker.username + " is available to work in NIGHT:");
-                    if (isAvailableToWork(currentAvailableWorker, availableWorkersToNightArray)) {
-                        newShift.guardsArray.push(currentAvailableWorker);
-
-                        console.log("Selected to shift: " + currentAvailableWorker.username);
-                        currentDayAvailableWorkersObj.availableWorkersInDay.splice(k, 1);
-                        break;
-                    }
-
-                    console.log("Checking for next available worker...");
                 }
-
-                // Add the shift to schedule:
-                $scope.currentSchedule.nightShift.positionsArray[i].shiftsArray[j] = newShift;
             }
-        }
 
-        // Evening Shift: Running on each position of evening shift:
-        for (var i=0; i<$scope.currentSchedule.eveningShift.positionsArray.length; i++) {
-            // Running on each shift of position[i]:
-            for (var j=DAYS_IN_WEEK-1; j>=0; j--) {
+            if ($scope.priorityArray[indexOfPriority].shiftName == "Evening") {
+                console.log("in Evening");
+                // Evening Shift: Running on each position of evening shift:
+                for (var i=0; i<$scope.currentSchedule.eveningShift.positionsArray.length; i++) {
+                    // Running on each shift of position[i]:
+                    for (var j=DAYS_IN_WEEK-1; j>=0; j--) {
 
-                var newShift = { guardsArray: new Array() };
-                console.log("Day " + j + ":");
+                        var newShift = { guardsArray: new Array() };
+                        console.log("Day " + j + ":");
 
-                var currentDayAvailableWorkersObj = availableWorkersPerDaysArray[j];
-                for (var k=0; k<currentDayAvailableWorkersObj.availableWorkersInDay.length; k++) {
+                        var currentDayAvailableWorkersObj = availableWorkersPerDaysArray[j];
+                        for (var k=0; k<currentDayAvailableWorkersObj.availableWorkersInDay.length; k++) {
 
-                    var currentAvailableWorker = currentDayAvailableWorkersObj.availableWorkersInDay[k];
-                    var availableWorkersToNightArray = currentDayAvailableWorkersObj.availableToWorkInEvening;
+                            var currentAvailableWorker = currentDayAvailableWorkersObj.availableWorkersInDay[k];
+                            var availableWorkersToNightArray = currentDayAvailableWorkersObj.availableToWorkInEvening;
 
-                    if (availableWorkersToNightArray.length == 0) {
-                        console.log("There are no available workers for this shift!");
-                        continue;
+                            if (availableWorkersToNightArray.length == 0) {
+                                console.log("There are no available workers for this shift!");
+                                continue;
+                            }
+
+                            console.log("Checking if worker " + currentAvailableWorker.username + " is available to work in NIGHT:");
+                            if (isAvailableToWork(currentAvailableWorker, availableWorkersToNightArray)) {
+                                newShift.guardsArray.push(currentAvailableWorker);
+
+                                console.log("Selected to shift: " + currentAvailableWorker.username);
+                                currentDayAvailableWorkersObj.availableWorkersInDay.splice(k, 1);
+                                break;
+                            }
+
+                            console.log("Checking for next available worker...");
+                        }
+
+                        // Add the shift to schedule:
+                        $scope.currentSchedule.eveningShift.positionsArray[i].shiftsArray[j] = newShift;
                     }
-
-                    console.log("Checking if worker " + currentAvailableWorker.username + " is available to work in NIGHT:");
-                    if (isAvailableToWork(currentAvailableWorker, availableWorkersToNightArray)) {
-                        newShift.guardsArray.push(currentAvailableWorker);
-
-                        console.log("Selected to shift: " + currentAvailableWorker.username);
-                        currentDayAvailableWorkersObj.availableWorkersInDay.splice(k, 1);
-                        break;
-                    }
-
-                    console.log("Checking for next available worker...");
                 }
-
-                // Add the shift to schedule:
-                $scope.currentSchedule.eveningShift.positionsArray[i].shiftsArray[j] = newShift;
             }
-        }
 
-        // Morning Shift: Running on each position of morning shift:
-        for (var i=0; i<$scope.currentSchedule.morningShift.positionsArray.length; i++) {
-            // Running on each shift of position[i]:
-            for (var j=DAYS_IN_WEEK-1; j>=0; j--) {
+            if ($scope.priorityArray[indexOfPriority].shiftName == "Morning") {
+                console.log("in Morning");
+                // Morning Shift: Running on each position of morning shift:
+                for (var i=0; i<$scope.currentSchedule.morningShift.positionsArray.length; i++) {
+                    // Running on each shift of position[i]:
+                    for (var j=DAYS_IN_WEEK-1; j>=0; j--) {
 
-                var newShift = { guardsArray: new Array() };
-                console.log("Day " + j + ":");
+                        var newShift = { guardsArray: new Array() };
+                        console.log("Day " + j + ":");
 
-                var currentDayAvailableWorkersObj = availableWorkersPerDaysArray[j];
-                for (var k=0; k<currentDayAvailableWorkersObj.availableWorkersInDay.length; k++) {
+                        var currentDayAvailableWorkersObj = availableWorkersPerDaysArray[j];
+                        for (var k=0; k<currentDayAvailableWorkersObj.availableWorkersInDay.length; k++) {
 
-                    var currentAvailableWorker = currentDayAvailableWorkersObj.availableWorkersInDay[k];
-                    var availableWorkersToNightArray = currentDayAvailableWorkersObj.availableToWorkInMorning;
+                            var currentAvailableWorker = currentDayAvailableWorkersObj.availableWorkersInDay[k];
+                            var availableWorkersToNightArray = currentDayAvailableWorkersObj.availableToWorkInMorning;
 
-                    if (availableWorkersToNightArray.length == 0) {
-                        console.log("There are no available workers for this shift!");
-                        continue;
+                            if (availableWorkersToNightArray.length == 0) {
+                                console.log("There are no available workers for this shift!");
+                                continue;
+                            }
+
+                            console.log("Checking if worker " + currentAvailableWorker.username + " is available to work in NIGHT:");
+                            if (isAvailableToWork(currentAvailableWorker, availableWorkersToNightArray)) {
+                                newShift.guardsArray.push(currentAvailableWorker);
+
+                                console.log("Selected to shift: " + currentAvailableWorker.username);
+                                currentDayAvailableWorkersObj.availableWorkersInDay.splice(k, 1);
+                                break;
+                            }
+
+                            console.log("Checking for next available worker...");
+                        }
+
+                        // Add the shift to schedule:
+                        $scope.currentSchedule.morningShift.positionsArray[i].shiftsArray[j] = newShift;
                     }
-
-                    console.log("Checking if worker " + currentAvailableWorker.username + " is available to work in NIGHT:");
-                    if (isAvailableToWork(currentAvailableWorker, availableWorkersToNightArray)) {
-                        newShift.guardsArray.push(currentAvailableWorker);
-
-                        console.log("Selected to shift: " + currentAvailableWorker.username);
-                        currentDayAvailableWorkersObj.availableWorkersInDay.splice(k, 1);
-                        break;
-                    }
-
-                    console.log("Checking for next available worker...");
                 }
-
-                // Add the shift to schedule:
-                $scope.currentSchedule.morningShift.positionsArray[i].shiftsArray[j] = newShift;
             }
         }
 
@@ -416,11 +422,10 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
         $scope.currentSchedule.published = true;
         // Update current schedule in DB:
         $http.put('/schedules/' + $scope.currentSchedule._id, $scope.currentSchedule).then(function(response) {
-            getCurrentWeekSchedule();
         });
     }
 
-    $scope.setSelected = function() {
+    $scope.setSelectedToRemove = function() {
 
         $scope.selectedPosition = this.position;
         $scope.selectedShift = this.shift;
@@ -428,7 +433,7 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
         $scope.selectedGuardsArray = this.shift.guardsArray;
     }
 
-    $scope.setSelectedShift = function(shiftNumber) {
+    $scope.setSelectedToAdd = function(shiftNumber) {
 
         $scope.selectedPosition = this.position;
         $scope.selectedShift = this.shift;
@@ -764,6 +769,35 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
                     $scope.pendingEmployeesList.splice(j, 1);
             }
         }
+    }
+
+    function getAdminConfiguration() {
+
+        $http.get('configuration/').success(function (response) {
+            // console.log(response);
+            $scope.adminConfiguration = response;
+        }).then(function(data) {
+
+            var morningShift = {
+                shiftName: "Morning",
+                priority: $scope.adminConfiguration.morningPriority
+            };
+            var eveningShift = {
+                shiftName: "Evening",
+                priority: $scope.adminConfiguration.eveningPriority
+            };
+            var nightShift = {
+                shiftName: "Night",
+                priority: $scope.adminConfiguration.nightPriority
+            };
+
+            // Set array of priorities (sorted):
+            $scope.priorityArray = new Array(3);
+            $scope.priorityArray.push(morningShift);
+            $scope.priorityArray.push(eveningShift);
+            $scope.priorityArray.push(nightShift);
+            $scope.priorityArray.sort(sortByPriority);
+        });
     }
 
     // --------------------------------------
