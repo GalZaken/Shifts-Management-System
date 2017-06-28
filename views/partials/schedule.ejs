@@ -107,9 +107,9 @@
                         <tr ng-repeat="position in currentSchedule.morningShift.positionsArray">
                             <td>{{ position.positionName }}</td>
                             <td ng-repeat="shift in position.shiftsArray track by $index">
-                                <span class="guard-name">{{ shift.guardsArray[0].username }}</span><br>
-                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>
-                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>
+                                <span class="guard-name" ng-repeat="guard in shift.guardsArray track by $index">{{ guard.username }} <br></span><br>
+                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red" data-toggle="modal" data-target="#removeModal" ng-click="setSelected()"></i></span>
+                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green" data-toggle="modal" data-target="#addModal"  ng-click="setSelectedShift(2)"></i></span>
                             </td>
                         </tr>
                         </tbody>
@@ -149,9 +149,9 @@
                         <tr ng-repeat="position in currentSchedule.eveningShift.positionsArray">
                             <td>{{ position.positionName }}</td>
                             <td ng-repeat="shift in position.shiftsArray track by $index">
-                                <span class="guard-name">{{ shift.guardsArray[0].username }}</span><br>
-                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>
-                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>
+                                <span class="guard-name" ng-repeat="guard in shift.guardsArray track by $index">{{ guard.username }} <br></span><br>
+                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red" data-toggle="modal" data-target="#removeModal" ng-click="setSelected()"></i></span>
+                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green" data-toggle="modal" data-target="#addModal"  ng-click="setSelectedShift(2)"></i></span>
                             </td>
                         </tr>
                         </tbody>
@@ -190,9 +190,9 @@
                         <tr ng-repeat="position in currentSchedule.nightShift.positionsArray">
                             <td>{{ position.positionName }}</td>
                             <td ng-repeat="shift in position.shiftsArray track by $index">
-                                <span class="guard-name">{{ shift.guardsArray[0].username }}</span><br>
-                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red" data-toggle="modal" data-target="#removeModal" ng-click="setSelected(3)"></i></span>
-                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green" ng-click="setSelected(3)"></i></span>
+                                <span class="guard-name" ng-repeat="guard in shift.guardsArray track by $index">{{ guard.username }} <br></span><br>
+                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red" data-toggle="modal" data-target="#removeModal" ng-click="setSelected()"></i></span>
+                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green" data-toggle="modal" data-target="#addModal"  ng-click="setSelectedShift(3)"></i></span>
                             </td>
                         </tr>
                         </tbody>
@@ -210,7 +210,7 @@
         <button type="button" class="btn btn-success btn-lg" ng-click="setPublish()">פרסם סידור עבודה</button>
     </div>
 
-    <!-- Confirm Delete Modal -->
+    <!-- Manual Remove Modal -->
     <div id="removeModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -218,7 +218,7 @@
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <div class="col-md-6">
-                        <button type="button" class="close pull-left" data-dismiss="modal" ng-click="restoreSelected()">&times;</button>
+                        <button type="button" class="close pull-left" data-dismiss="modal" ng-click="restoreSelected(1)">&times;</button>
                     </div>
                     <div class="col-md-6">
                         <h3 class="modal-title">מחיקה</h3>
@@ -253,7 +253,77 @@
                 <!-- Modal Footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="updateSchedule()">אישור</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="restoreSelected()">ביטול</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="restoreSelected(1)">ביטול</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manual Add Modal -->
+    <div id="addModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div class="col-md-6">
+                        <button type="button" class="close pull-left" data-dismiss="modal" ng-click="restoreSelected(2)">&times;</button>
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="modal-title">מחיקה</h3>
+                    </div>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>שם העובד</th>
+                                <th>עדיפות</th>
+                                <th>הוספה</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="success" ng-repeat="guard in availableWorkersToAdd">
+                                <td class="table-success">{{ guard.username }}</td>
+                                <td>{{ guard.priority }}</td>
+                                <td class="icon-color">
+                                    <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green" title="הוסף" ng-click="addSelected(guard._id)"></i></span>
+                                </td>
+                            </tr>
+                            <tr class="info" ng-repeat="guard in availableWorkersToDay">
+                                <td>{{ guard.username }}</td>
+                                <td>{{ guard.priority }}</td>
+                                <td class="icon-color">
+                                    <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green" title="הוסף" ng-click="addSelected(guard._id)"></i></span>
+                                </td>
+                            </tr>
+                            <tr class="danger" ng-repeat="guard in unavailableWorkersToAdd">
+                                <td>{{ guard.username }}</td>
+                                <td>{{ guard.priority }}</td>
+                                <td class="icon-color">
+                                    <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green" title="הוסף" ng-click="addSelected(guard._id)"></i></span>
+                                </td>
+                            </tr>
+                            <tr class="warning" ng-repeat="guard in pendingEmployeesList">
+                                <td>{{ guard.username }}</td>
+                                <td>{{ guard.priority }}</td>
+                                <td class="icon-color">
+                                    <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green" title="הוסף" ng-click="addSelected(guard._id)"></i></span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="updateSchedule()">אישור</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="restoreSelected(2)">ביטול</button>
                 </div>
             </div>
         </div>

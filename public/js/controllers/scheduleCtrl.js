@@ -420,13 +420,79 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
         });
     }
 
-    $scope.setSelected = function(shiftNumber) {
+    $scope.setSelected = function() {
 
-        $scope.selectedShift = shiftNumber;
         $scope.selectedPosition = this.position;
         $scope.selectedShift = this.shift;
-        $scope.selectedDay = $scope.selectedPosition.shiftsArray.indexOf(this.shift)
+        $scope.selectedDay = $scope.selectedPosition.shiftsArray.indexOf(this.shift);
         $scope.selectedGuardsArray = this.shift.guardsArray;
+    }
+
+    $scope.setSelectedShift = function(shiftNumber) {
+
+        $scope.selectedPosition = this.position;
+        $scope.selectedShift = this.shift;
+        $scope.selectedDay = $scope.selectedPosition.shiftsArray.indexOf(this.shift);
+        $scope.selectedGuardsArray = this.shift.guardsArray;
+
+        $scope.selectedShift = shiftNumber;
+
+        $scope.availableWorkersToAdd = new Array(); // available by shift
+        $scope.availableWorkersToDay = new Array(); // available by day
+        $scope.unavailableWorkersToAdd = new Array(); // unavailable
+
+        var day = $scope.selectedDay;
+
+        // Set available workers arrays per shift:
+        for (var i=0; i<$scope.activeEmployeesList.length; i++) { // i represents the current employee user
+
+            var isAvailable = false; // flag for available to work in day;
+
+            if ($scope.activeEmployeesList[i].userShifts.morning.shifts[day]) {
+                // if the current employee wants to work on morning in day j:
+                if (shiftNumber == 1) { // add to available and want
+                    $scope.availableWorkersToAdd.push($scope.activeEmployeesList[i]);
+                    continue;
+                }
+                else
+                    isAvailable = true;
+            }
+
+            if ($scope.activeEmployeesList[i].userShifts.evening.shifts[day]) {
+                // if the current employee wants to work on evening in day j:
+                if (shiftNumber == 2) { // add to available and want
+                    $scope.availableWorkersToAdd.push($scope.activeEmployeesList[i]);
+                    continue;
+                }
+                else
+                    isAvailable = true;
+            }
+
+            if ($scope.activeEmployeesList[i].userShifts.night.shifts[day]) {
+                // if the current employee wants to work on night in day j:
+                if (shiftNumber == 3) { // add to available and want
+                    $scope.availableWorkersToAdd.push($scope.activeEmployeesList[i]);
+                    continue;
+                }
+                else
+                    isAvailable = true;
+            }
+
+            // In case that the worker is available to work in day, but not in selected shift:
+            if (isAvailable)
+                $scope.availableWorkersToDay.push($scope.activeEmployeesList[i]);
+            else
+                $scope.unavailableWorkersToAdd.push($scope.activeEmployeesList[i]);
+        }
+
+        // remove occurrence of currently guards:
+        removeOccurrenceOfSelectedGuards();
+
+        // sort each array by priority:
+        $scope.availableWorkersToAdd.sort(sortByPriority);
+        $scope.availableWorkersToDay.sort(sortByPriority);
+        $scope.unavailableWorkersToAdd.sort(sortByPriority);
+        $scope.pendingEmployeesList.sort(sortByPriority);
     }
 
     $scope.removeSelected = function(id) {
@@ -435,12 +501,19 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
         $scope.selectedGuardsArray.splice(indexOfGuardToRemove, 1);
     }
 
-    $scope.restoreSelected = function() {
+    $scope.restoreSelected = function(operationNumber) {
+
+        // operationNumber = 1 -> Remove
+        // operationNumber = 2 -> Add
 
         if ($scope.selectedGuard == null)
             return;
 
-        $scope.selectedGuardsArray.push($scope.selectedGuard);
+        if (operationNumber == 1)
+            $scope.selectedGuardsArray.push($scope.selectedGuard);
+        else if (operationNumber == 2)
+            $scope.selectedGuardsArray.pop();
+
         $scope.selectedGuard = null;
     }
 
@@ -448,6 +521,14 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
         $http.put('/schedules/' + $scope.currentSchedule._id, $scope.currentSchedule).then(function(response) {
             getCurrentWeekSchedule();
         });
+    }
+
+    $scope.addSelected = function (id) {
+
+        $scope.selectedGuard = this.guard;
+        $scope.selectedGuardsArray.push($scope.selectedGuard);
+
+        removeOccurrenceOfSelectedGuards();
     }
 
     // Get availableWorkersPerShift: Morning, Evening, Night;
@@ -651,6 +732,38 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
             return -1;
         else
             return 0;
+    }
+
+    function removeOccurrenceOfSelectedGuards() {
+
+        for (var i=0; i<$scope.selectedGuardsArray.length; i++) {
+
+            var currentGuard = $scope.selectedGuardsArray[i];
+
+            // Remove instance of existing guard if already exist in availableWorkersToAdd:
+            for (var j=0; j<$scope.availableWorkersToAdd.length; j++) {
+                if (currentGuard._id == $scope.availableWorkersToAdd[j]._id)
+                    $scope.availableWorkersToAdd.splice(j, 1);
+            }
+
+            // Remove instance of existing guard if already exist in availableWorkersToDay
+            for (var j=0; j<$scope.availableWorkersToDay.length; j++) {
+                if (currentGuard._id == $scope.availableWorkersToDay[j]._id)
+                    $scope.availableWorkersToDay.splice(j, 1);
+            }
+
+            // Remove instance of existing guard if already exist in unavailableWorkersToAdd
+            for (var j=0; j<$scope.unavailableWorkersToAdd.length; j++) {
+                if (currentGuard._id == $scope.unavailableWorkersToAdd[j]._id)
+                    $scope.unavailableWorkersToAdd.splice(j, 1);
+            }
+
+            // Remove instance of existing guard if already exist in pendingEmployeesList
+            for (var j=0; j<$scope.pendingEmployeesList.length; j++) {
+                if (currentGuard._id == $scope.pendingEmployeesList[j]._id)
+                    $scope.pendingEmployeesList.splice(j, 1);
+            }
+        }
     }
 
     // --------------------------------------
