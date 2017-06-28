@@ -28,7 +28,7 @@ angular.module('ShiftsManagerApp').controller('homeCtrl', ['$scope', '$http', fu
         $http.get('users/currentUser').success(function (response) {
             $scope.currentUser = response;
         }).then(function (data) {
-            console.log("$scope.currentUser: " + $scope.currentUser.username);
+            // console.log("$scope.currentUser: " + $scope.currentUser.username);
         });
 
     };
@@ -105,12 +105,10 @@ angular.module('ShiftsManagerApp').controller('homeCtrl', ['$scope', '$http', fu
         $scope.nextWeekEndDate = new Date(now.setDate(nextWeekLastDay));
         $scope.nextWeekEndDateString = getStringDate($scope.nextWeekEndDate);
 
-        console.log("$scope.currentWeekStartDateString; " + $scope.currentWeekStartDateString);
-        console.log("$scope.currentWeekEndDateString; " + $scope.currentWeekEndDateString);
-        console.log("$scope.nextWeekStartDateString; " + $scope.nextWeekStartDateString);
-        console.log("$scope.nextWeekEndDateString; " + $scope.nextWeekEndDateString);
-
-
+        // console.log("$scope.currentWeekStartDateString; " + $scope.currentWeekStartDateString);
+        // console.log("$scope.currentWeekEndDateString; " + $scope.currentWeekEndDateString);
+        // console.log("$scope.nextWeekStartDateString; " + $scope.nextWeekStartDateString);
+        // console.log("$scope.nextWeekEndDateString; " + $scope.nextWeekEndDateString);
     }
 
     function setScheduleDaysArray(startDateString) {

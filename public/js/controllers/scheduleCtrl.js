@@ -30,6 +30,10 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
     }
 
     $scope.setSelected = function(index) {
+
+        if ($scope.isAdmin())
+            return;
+
         $scope.selected = this.shift;
         if ($scope.selected.shifts[index])
             $scope.selected.shifts[index] = false;
@@ -122,6 +126,8 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
     $scope.morningShiftPositionsArray = [];
     $scope.eveningShiftPositionsArray = [];
     $scope.nightShiftPositionsArray = [];
+
+    $scope.selectedGuard = null;
 
     setCurrentWeekDates();
     getCurrentWeekSchedule();
@@ -409,6 +415,36 @@ angular.module('ShiftsManagerApp').controller('scheduleCtrl', ['$scope', '$http'
     $scope.setPublish = function() {
         $scope.currentSchedule.published = true;
         // Update current schedule in DB:
+        $http.put('/schedules/' + $scope.currentSchedule._id, $scope.currentSchedule).then(function(response) {
+            getCurrentWeekSchedule();
+        });
+    }
+
+    $scope.setSelected = function(shiftNumber) {
+
+        $scope.selectedShift = shiftNumber;
+        $scope.selectedPosition = this.position;
+        $scope.selectedShift = this.shift;
+        $scope.selectedDay = $scope.selectedPosition.shiftsArray.indexOf(this.shift)
+        $scope.selectedGuardsArray = this.shift.guardsArray;
+    }
+
+    $scope.removeSelected = function(id) {
+        $scope.selectedGuard = this.guard;
+        var indexOfGuardToRemove = $scope.selectedGuardsArray.indexOf($scope.selectedGuard);
+        $scope.selectedGuardsArray.splice(indexOfGuardToRemove, 1);
+    }
+
+    $scope.restoreSelected = function() {
+
+        if ($scope.selectedGuard == null)
+            return;
+
+        $scope.selectedGuardsArray.push($scope.selectedGuard);
+        $scope.selectedGuard = null;
+    }
+
+    $scope.updateSchedule = function() {
         $http.put('/schedules/' + $scope.currentSchedule._id, $scope.currentSchedule).then(function(response) {
             getCurrentWeekSchedule();
         });

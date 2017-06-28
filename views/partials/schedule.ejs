@@ -191,8 +191,8 @@
                             <td>{{ position.positionName }}</td>
                             <td ng-repeat="shift in position.shiftsArray track by $index">
                                 <span class="guard-name">{{ shift.guardsArray[0].username }}</span><br>
-                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red"></i></span>
-                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green"></i></span>
+                                <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red" data-toggle="modal" data-target="#removeModal" ng-click="setSelected(3)"></i></span>
+                                <span class="clickable"><i class="glyphicon glyphicon-plus icon-color-green" ng-click="setSelected(3)"></i></span>
                             </td>
                         </tr>
                         </tbody>
@@ -208,5 +208,54 @@
         <!-- Button for triggering set shifts algorithm: -->
         <button type="button" class="btn btn-info btn-lg" ng-click="setShifts()" ng-disabled="currentSchedule.published">קבע סידור עבודה</button>
         <button type="button" class="btn btn-success btn-lg" ng-click="setPublish()">פרסם סידור עבודה</button>
+    </div>
+
+    <!-- Confirm Delete Modal -->
+    <div id="removeModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div class="col-md-6">
+                        <button type="button" class="close pull-left" data-dismiss="modal" ng-click="restoreSelected()">&times;</button>
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="modal-title">מחיקה</h3>
+                    </div>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>שם העובד</th>
+                                <th>עדיפות</th>
+                                <th>מחיקה</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="guard in selectedGuardsArray">
+                                <td>{{ guard.username }}</td>
+                                <td>{{ guard.priority }}</td>
+                                <td class="icon-color">
+                                    <span class="clickable"><i class="glyphicon glyphicon-minus icon-color-red" title="מחק" ng-click="removeSelected(guard._id)"></i></span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="updateSchedule()">אישור</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="restoreSelected()">ביטול</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

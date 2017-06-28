@@ -15,7 +15,7 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
         $http.get('users/currentUser').success(function (response) {
             $scope.currentUser = response;
         });
-        console.log($scope.currentUser);
+        // console.log($scope.currentUser);
     };
 
     $scope.isAdmin = function() {
