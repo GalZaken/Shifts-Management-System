@@ -11,6 +11,7 @@ passportConfiguration(passport);
 
 // GET Logout:
 router.get('/logout', function(req, res) {
+    req.session.destroy();
     req.logout();
     res.redirect('/users/login');
 });

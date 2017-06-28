@@ -23,6 +23,10 @@ angular.module('ShiftsManagerApp', ['ngRoute'])
                 controller: 'settingsCtrl',
                 templateUrl: 'partials/settings.ejs'
             })
+            .when('/logout', {
+                controller: 'logoutCtrl',
+                templateUrl:'users/logout'
+            })
             .otherwise({redirectTo: '/'});
 
         $locationProvider.html5Mode(true);
