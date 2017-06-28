@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea3d9ad6-96c9-479a-917d-0c79dc915596" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/homeCtrl.js" afterPath="$PROJECT_DIR$/public/js/controllers/homeCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/scheduleCtrl.js" afterPath="$PROJECT_DIR$/public/js/controllers/scheduleCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/partials/schedule.ejs" afterPath="$PROJECT_DIR$/views/partials/schedule.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/mongoSettings.xml" afterPath="$PROJECT_DIR$/.idea/mongoSettings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/employeesCtrl.js" afterPath="$PROJECT_DIR$/public/js/controllers/employeesCtrl.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,7 +30,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="scheduleCtrl.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="scheduleCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/controllers/scheduleCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="338">
@@ -95,6 +94,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="458">
               <caret line="211" column="0" lean-forward="true" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="employeesCtrl.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/js/controllers/employeesCtrl.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="363">
+              <caret line="104" column="63" lean-forward="true" selection-start-line="104" selection-start-column="63" selection-end-line="104" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -186,7 +195,6 @@
         <option value="$PROJECT_DIR$/routes/schedules.js" />
         <option value="$PROJECT_DIR$/public/css/custom/home.css" />
         <option value="$PROJECT_DIR$/views/partials/home.ejs" />
-        <option value="$PROJECT_DIR$/public/js/controllers/employeesCtrl.js" />
         <option value="$PROJECT_DIR$/routes/users.js" />
         <option value="$PROJECT_DIR$/public/js/appRouting.js" />
         <option value="$PROJECT_DIR$/public/js/controllers/logoutCtrl.js" />
@@ -199,6 +207,7 @@
         <option value="$PROJECT_DIR$/public/js/controllers/homeCtrl.js" />
         <option value="$PROJECT_DIR$/views/partials/schedule.ejs" />
         <option value="$PROJECT_DIR$/public/js/controllers/scheduleCtrl.js" />
+        <option value="$PROJECT_DIR$/public/js/controllers/employeesCtrl.js" />
       </list>
     </option>
   </component>
@@ -398,7 +407,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="D:\Apps\NodeJS\node.exe" />
-    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+    <property name="settings.editor.selected.configurable" value="preferences.mongoOptions" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -886,12 +895,12 @@
       <workItem from="1498656347222" duration="9976000" />
       <workItem from="1498670699623" duration="545000" />
       <workItem from="1498671590657" duration="67000" />
-      <workItem from="1498668209008" duration="6277000" />
+      <workItem from="1498668209008" duration="8056000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="311137000" />
+    <option name="totallyTimeSpent" value="312916000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="2586" height="1386" extended-state="6" />
@@ -1116,14 +1125,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/employeesCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="18" column="6" lean-forward="false" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -1303,6 +1304,14 @@
             <element signature="e#32578#33553#0" expanded="false" />
             <element signature="e#33634#33875#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/employeesCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="104" column="63" lean-forward="true" selection-start-line="104" selection-start-column="63" selection-end-line="104" selection-end-column="63" />
+          <folding />
         </state>
       </provider>
     </entry>

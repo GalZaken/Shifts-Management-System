@@ -102,6 +102,7 @@ angular.module('ShiftsManagerApp').controller('employeesCtrl', ['$scope', '$http
         var updatedUser = createUserObject();
         updatedUser._id = $scope.user._id;
         updatedUser.password = $scope.user.password;
+        updatedUser.userShifts = $scope.currentUser.userShifts;
 
         $http.put('/users/usersList/' + id, updatedUser).then(function(response) {
             console.log(response);
