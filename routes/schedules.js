@@ -104,10 +104,6 @@ function initCurrentSchedule(req, res, next) {
             console.log("Current dates schedule doesn't exist in schedules collection!");
             console.log("Creating current schedule...");
 
-            var mor = Position.getPositionsArrayOfMorningShift();
-            console.log("POSITIONS ARRAY OF MORNING SHIFTS: ");
-
-
             var currentSchedule = new Schedule({
                 published: false,
 
@@ -118,13 +114,13 @@ function initCurrentSchedule(req, res, next) {
                 endDate: new Date(endDateString),
 
                 morningShift: {
-                    positionsArray: []
+                    positionsArray: new Array()
                 },
                 eveningShift: {
-                    positionsArray: []
+                    positionsArray: new Array()
                 },
                 nightShift: {
-                    positionsArray: []
+                    positionsArray: new Array()
                 }
             });
 
@@ -194,13 +190,13 @@ function initNextWeekSchedule(req, res, next) {
                 endDate: new Date(nextWeekEndDateString),
 
                 morningShift: {
-                    positionsArray: []
+                    positionsArray: new Array()
                 },
                 eveningShift: {
-                    positionsArray: []
+                    positionsArray: new Array()
                 },
                 nightShift: {
-                    positionsArray: []
+                    positionsArray: new Array()
                 }
             });
 

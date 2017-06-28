@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var User = require('../models/user');
+var bcrypt = require('bcryptjs');
 
 // PASSPORT CONFIGURATION:
 var passport = require('passport');
