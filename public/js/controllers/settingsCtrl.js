@@ -20,6 +20,7 @@ angular.module('ShiftsManagerApp').controller('settingsCtrl', ['$scope', '$http'
         // GET POSITIONS LIST FROM DB:
         $http.get('/positions/positionsList').success(function (response) {
             $scope.positionsList = response;
+            getAdminConfiguration();
         });
     };
     refresh();
@@ -102,5 +103,34 @@ angular.module('ShiftsManagerApp').controller('settingsCtrl', ['$scope', '$http'
         $scope.selectedInMorningValue = 1;
         $scope.selectedInEveningValue = 1;
         $scope.selectedInNightValue = 1;
+    }
+
+    function getAdminConfiguration() {
+
+        $http.get('configuration/').success(function (response) {
+            // console.log(response);
+            $scope.adminConfiguration = response;
+
+            $scope.selectedMorningPriorityValue = $scope.adminConfiguration.morningPriority;
+            $scope.selectedEveningPriorityValue= $scope.adminConfiguration.eveningPriority;
+            $scope.selectedNightPriorityValue = $scope.adminConfiguration.nightPriority;
+        });
+    }
+
+    $scope.updateAdminConfiguration = function() {
+
+        var configuration = {
+            morningPriority: $scope.selectedMorningPriorityValue,
+            eveningPriority: $scope.selectedEveningPriorityValue,
+            nightPriority: $scope.selectedNightPriorityValue
+        };
+
+        var id = $scope.adminConfiguration._id;
+
+        // push adminComment to DB
+        $http.put('/configuration/' + id, configuration).then(function(response) {
+            // console.log(response);
+            getAdminConfiguration();
+        });
     }
 }]);

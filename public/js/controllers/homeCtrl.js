@@ -21,8 +21,6 @@ angular.module('ShiftsManagerApp').controller('homeCtrl', ['$scope', '$http', fu
     getCurrentSchedule();
     getNextSchedule()
 
-
-
     function getCurrentUser() {
         // GET CURRENT USER OBJECT:
         $http.get('users/currentUser').success(function (response) {

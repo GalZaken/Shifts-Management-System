@@ -14,6 +14,7 @@ var session      = require('express-session');
 
 var routes = require('./routes/routes');
 var users = require('./routes/users');
+var configuration = require('./routes/configurations');
 var comment = require('./routes/comment');
 var positions = require('./routes/positions');
 var schedules = require('./routes/schedules');
@@ -65,6 +66,7 @@ app.use(flash());
 app.get('/partials/:name', routes.partials);
 app.get('/', routes.ensureAuthenticated, routes.index);
 app.use('/users', users);
+app.use('/configuration', configuration);
 app.use('/comment', comment);
 app.use('/positions', positions);
 app.use('/schedules', schedules);
